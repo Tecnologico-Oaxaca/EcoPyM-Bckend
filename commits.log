@@ -1,3 +1,24 @@
+commit f6821605566c10fbc140097acfa34049e176c67f
+Merge: e2ae890 2647303
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Fri May 17 13:38:12 2024 -0600
+
+    Merge pull request #2 from SoyFroylanMtz/cambios
+    
+    Desarrollo de Api Busine
+
+commit 2647303cbbbc80562a4539436e9e5d76a11bdeaa
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Fri May 17 13:32:29 2024 -0600
+
+    Desarrollo de Api Busine
+
+commit e2ae8901702513cfe4dad84f1a657d2ab1d2294d
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Fri May 17 04:50:58 2024 -0600
+
+    Actualizando log commits
+
 commit 5160b34d6483790082e117ad5c442af04150f209
 Merge: bcbe2e9 89839bc
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
