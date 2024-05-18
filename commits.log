@@ -1,3 +1,24 @@
+commit 710deec19e1708be0c899e7f36dcccc4c82253cf
+Merge: 0858c53 b62cd78
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Fri May 17 19:48:51 2024 -0600
+
+    Merge pull request #3 from SoyFroylanMtz/cambios
+    
+    Desarrollo de Api MIPyME
+
+commit b62cd78e0723d81000d130ad45cd82a13b0da0bf
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Fri May 17 19:46:37 2024 -0600
+
+    Desarrollo de Api MIPyME
+
+commit 0858c530d61df70143aa985e1c0b392a0ad21a7a
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Fri May 17 13:41:40 2024 -0600
+
+    Actualizando log commits
+
 commit f6821605566c10fbc140097acfa34049e176c67f
 Merge: e2ae890 2647303
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
