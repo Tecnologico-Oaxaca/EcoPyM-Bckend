@@ -1,3 +1,24 @@
+commit 0d6a2c98b5e93fd366b560f311352607f56b0a9d
+Merge: 05f9207 6f86d97
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Sat May 18 09:50:22 2024 -0600
+
+    Merge pull request #4 from SoyFroylanMtz/cambios
+    
+    Se creo la migracion Mipyme_busine
+
+commit 6f86d97ff796088c0291a8dcdab64344075a336d
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Sat May 18 09:48:36 2024 -0600
+
+    Se creo la migracion Mipyme_busine
+
+commit 05f920712408903d203c947c3d6e55bc9bb62ca9
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Fri May 17 19:51:34 2024 -0600
+
+    Actualizando log commits
+
 commit 710deec19e1708be0c899e7f36dcccc4c82253cf
 Merge: 0858c53 b62cd78
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
