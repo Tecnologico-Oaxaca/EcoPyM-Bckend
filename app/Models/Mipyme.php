@@ -20,6 +20,10 @@ class Mipyme extends Model
         'email',
         'image'
     ];
+    public function businesses()
+    {
+        return $this->belongsToMany(Busine::class, 'mipyme_business', 'mipyme_id', 'business_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

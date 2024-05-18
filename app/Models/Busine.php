@@ -17,6 +17,10 @@ class Busine extends Model
     protected $fillable = [
         'type',
     ];
+    public function mipymes()
+    {
+        return $this->belongsToMany(Mipyme::class, 'mipyme_business', 'business_id', 'mipyme_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
