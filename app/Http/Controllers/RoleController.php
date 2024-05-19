@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Area;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Validator;
 
-class AreaController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index() {
         try {
-            $areas = Area::all();
+            $roles = Role::all();
     
-            if ($areas->isEmpty()) {
+            if ($roles->isEmpty()) {
                 $data = [
-                    'message' => 'Areas inexistentes',
+                    'message' => 'Roles inexistentes',
                     'data' => null,
                     'status' => Response::HTTP_NOT_FOUND,
                 ];
@@ -27,15 +27,15 @@ class AreaController extends Controller
             }
 
             $data = [
-                'message' => 'Areas encontradas',
-                'data' => $areas,
+                'message' => 'Roles encontrados',
+                'data' => $roles,
                 'status' => Response::HTTP_OK,
             ];
             return response()->json($data, Response::HTTP_OK);
     
         } catch (\Exception $e) {
             $data = [
-                'message' => 'Error al obtener las Areas',
+                'message' => 'Error al obtener los roles',
                 'data' => null,
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
             ];
@@ -50,13 +50,13 @@ class AreaController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => [
                 'required','string','max:30',
-                Rule::unique('areas', 'name') 
+                Rule::unique('roles', 'name') 
             ],
         ], [
-            'name.required' => 'El area es obligatorio',
-            'name.string' => 'El area debe ser una cadena de texto.',
-            'name.max' => 'El area no puede ser mayor a 30 caracteres.',
-            'name.unique' => 'El area ya existe.', 
+            'name.required' => 'El rol es obligatorio',
+            'name.string' => 'El rol debe ser una cadena de texto.',
+            'name.max' => 'El rol no puede ser mayor a 30 caracteres.',
+            'name.unique' => 'El rol ya existe.', 
         ]);
     
         if ($validator->fails()) {
@@ -69,10 +69,10 @@ class AreaController extends Controller
             return response()->json($data, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         try {
-            $areas = Area::create($validator->validated());
-            if (!$areas) {
+            $roles = Role::create($validator->validated());
+            if (!$roles) {
                 $data = [
-                    'message' => 'Error al crear el area',
+                    'message' => 'Error al crear el rol',
                     'errors' => $validator->errors(),
                     'data' => null,
                     'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
@@ -80,14 +80,14 @@ class AreaController extends Controller
                 return response()->json($data, Response::HTTP_INTERNAL_SERVER_ERROR);
             }
             $data = [
-                'message' => 'Area creada',
-                'data' => $areas,
+                'message' => 'Rol creado',
+                'data' => $roles,
                 'status' => Response::HTTP_CREATED,
             ];
             return response()->json($data, Response::HTTP_CREATED);
         } catch (\Exception $e) {
             $data = [
-                'message' => 'Error al crear el area',
+                'message' => 'Error al crear el rol',
                 'data' => null,
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
             ];
@@ -99,11 +99,11 @@ class AreaController extends Controller
      * Display the specified resource.
      */
     public function show($id){
-        $areas = Area::find($id);
+        $roles = Role::find($id);
 
-        if(!$areas){
+        if(!$roles){
             $data = [
-                'message' => 'Area no encontrada',
+                'message' => 'Rol no encontrado',
                 'data' => null,
                 'status' => Response::HTTP_NOT_FOUND 
             ];
@@ -111,8 +111,8 @@ class AreaController extends Controller
         }
 
         $data = [
-            'message' => 'Area encontrada',
-            'data' => $areas,
+            'message' => 'Rol encontrad0',
+            'data' => $roles,
             'status' => Response::HTTP_OK,
         ];
         return response() -> json($data,Response::HTTP_OK);
@@ -122,10 +122,10 @@ class AreaController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id){
-        $areas = Area::find($id);
-        if(!$areas){
+        $roles = Role::find($id);
+        if(!$roles){
             $data = [
-                'message' => 'Area no encontrada',
+                'message' => 'Rol no encontrado',
                 'data' => null,
                 'status' => Response::HTTP_NOT_FOUND,
             ];
@@ -134,13 +134,13 @@ class AreaController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => [
                 'required','string','max:30',
-                Rule::unique('areas', 'name')->ignore($areas->id)
+                Rule::unique('roles', 'name')->ignore($roles->id)
             ],
         ], [
-            'name.required' => 'El area es obligatorio',
-            'name.string' => 'El area debe ser una cadena de texto.',
-            'name.max' => 'El area no puede ser mayor a 30 caracteres.',
-            'name.unique' => 'El area ya existe.', 
+            'name.required' => 'El rol es obligatorio',
+            'name.string' => 'El rol debe ser una cadena de texto.',
+            'name.max' => 'El rol no puede ser mayor a 30 caracteres.',
+            'name.unique' => 'El rol ya existe.', 
         ]);
 
         if($validator ->fails()){
@@ -152,10 +152,10 @@ class AreaController extends Controller
             ];
             return response() -> json($data,Response::HTTP_BAD_REQUEST);
         }
-        $areas->update($validator->validated());
+        $roles->update($validator->validated());
         $data = [
-            'message' => 'Area actualizada',
-            'data' => $areas,
+            'message' => 'Rol actualizado',
+            'data' => $roles,
             'status' => Response::HTTP_OK,
         ];
         return response() -> json($data,Response::HTTP_OK);
@@ -165,31 +165,31 @@ class AreaController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy($id){
-        $areas = Area::find($id);
-        if(!$areas){
+        $roles = Role::find($id);
+        if(!$roles){
             $data = [
-                'message' => 'Area no encontrada',
+                'message' => 'Rol no encontrado',
                 'data' => null,
                 'status' => Response::HTTP_NOT_FOUND,
             ];
             return response() -> json($data,Response::HTTP_NOT_FOUND);
         }
 
-        $areas -> delete();
+        $roles -> delete();
 
         $data = [
-            'message' => 'Area eliminada',
-            'data' => $areas,
+            'message' => 'Rol eliminado',
+            'data' => $roles,
             'status' => Response::HTTP_OK
         ];
         return response() -> json($data,Response::HTTP_OK);
     }
 
     public function updatePartial(Request $request, $id){
-        $areas = Area::find($id);
-        if(!$areas){
+        $roles = Role::find($id);
+        if(!$roles){
             $data = [
-                'message' => 'Area no encontrada',
+                'message' => 'Rol no encontrado',
                 'data' => null,
                 'status' => Response::HTTP_NOT_FOUND
             ];
@@ -198,13 +198,13 @@ class AreaController extends Controller
 
         $validator = Validator::make($request->all(), [
             'name' => [
-                'string','max:30',Rule::unique('areas', 'name')->ignore($areas->id) 
+                'string','max:30',Rule::unique('roles', 'name')->ignore($roles->id) 
             ],
 
         ], [
-            'name.string' => 'El nombre debe ser una cadena de texto.',
-            'name.max' => 'El nombre no puede ser mayor a 50 caracteres.',
-            'name.unique' => 'El nombre ya existe.',
+            'name.string' => 'El rol debe ser una cadena de texto.',
+            'name.max' => 'El rol no puede ser mayor a 50 caracteres.',
+            'name.unique' => 'El rol ya existe.',
         ]);
 
         if($validator ->fails()){
@@ -218,13 +218,13 @@ class AreaController extends Controller
         }
 
         if($request -> has('name')){
-            $areas -> name = $request -> name;
+            $roles -> name = $request -> name;
         }
-        $areas -> save();
+        $roles -> save();
 
         $data = [
-            'message' => 'MIPyME actualizada',
-            'restaurants' => $areas,
+            'message' => 'Rol actualizado',
+            'restaurants' => $roles,
             'status' => RESPONSE::HTTP_OK
         ];
         return response() -> json($data,RESPONSE::HTTP_OK);
