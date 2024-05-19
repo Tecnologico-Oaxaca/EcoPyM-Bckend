@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use App\Http\Controllers\BusineController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Mipyme extends Model
+class Branch extends Model
 {
     use HasFactory;
 
@@ -16,18 +15,22 @@ class Mipyme extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'image'
+        'image',
+        'open_time',
+        'close_time',
+        'phone',
+        'state',
+        'city',
+        'district',
+        'street',
+        'number',
+        'mipyme_id',
     ];
-    public function businesses(){
-        return $this->belongsToMany(Busine::class, 'mipyme_business', 'mipyme_id', 'business_id');
-    }
 
-    public function branches(){
-        return $this->hasMany(Branch::class);
+    public function mipyme(){
+        return $this->belongsTo(Mipyme::class, 'mipyme_id');
     }
-
+    
     /**
      * The attributes that should be hidden for serialization.
      *

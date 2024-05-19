@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BranchController;
 use App\Http\Controllers\BusineController;
 use App\Http\Controllers\MipymeController;
 use Illuminate\Http\Request;
@@ -23,3 +24,10 @@ Route::post('/mipymes',[MipymeController::class, 'store']);
 Route::put('/mipymes/{id}',[MipymeController::class, 'update']);
 Route::patch('/mipymes/{id}',[MipymeController::class, 'updatePartial']);
 Route::delete('/mipymes/{id}',[MipymeController::class, 'destroy']);
+
+Route::get('/branches',[BranchController::class, 'index']);
+Route::get('/branches/{id}',[BranchController::class, 'show']);
+Route::post('/branches',[BranchController::class, 'store']);
+Route::put('/branches/{id}',[BranchController::class, 'update']);
+Route::patch('/branches/{id}',[BranchController::class, 'updatePartial']);
+Route::delete('/branches/{id}',[BranchController::class, 'destroy']);

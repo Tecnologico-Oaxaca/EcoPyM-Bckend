@@ -106,7 +106,7 @@ class BusineController extends Controller{
 
         if(!$business){
             $data = [
-                'message' => 'Giro comercial no encontrado',
+                'message' => 'Giro empresarial no encontrado',
                 'data' => null,
                 'status' => Response::HTTP_NOT_FOUND 
             ];
@@ -114,7 +114,7 @@ class BusineController extends Controller{
         }
 
         $data = [
-            'message' => 'Giro comercial encontrado',
+            'message' => 'Giro empresarial encontrado',
             'data' => $business,
             'status' => Response::HTTP_OK,
         ];
@@ -235,7 +235,7 @@ class BusineController extends Controller{
 
         $data = [
             'message' => 'Giro comercial actualizado',
-            'restaurants' => $business,
+            'data' => $business,
             'status' => RESPONSE::HTTP_OK
         ];
         return response() -> json($data,RESPONSE::HTTP_OK);
