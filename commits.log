@@ -1,3 +1,24 @@
+commit 1927e2d690b4f8155c6b2398b9b0562198d62b48
+Merge: 8438d6c 62e1ecc
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Sun May 19 10:52:45 2024 -0600
+
+    Merge pull request #11 from SoyFroylanMtz/rama-nueva
+    
+    Desarrollo Api Area
+
+commit 62e1ecc10c45f95ba9705f06b017b6738c7626a2
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Sun May 19 10:48:53 2024 -0600
+
+    Desarrollo Api Area
+
+commit 8438d6c11919bc6dce8f87c9328e8a91477b0ff7
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Sun May 19 03:08:07 2024 -0600
+
+    Actualizando log commits
+
 commit 2094520933c2566794f6509c59a21c3d5b0cc066
 Merge: 747f1e7 47543a2
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
