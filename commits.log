@@ -1,3 +1,30 @@
+commit b73d3cdc7053ea3223c64c96ae18c9cda96c041d
+Merge: de8dcc5 c0abdbb
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Sat May 18 19:22:08 2024 -0600
+
+    Merge pull request #6 from SoyFroylanMtz/cambios
+    
+    Cambios
+
+commit c0abdbb1e908a763225446b52088a64285e5cccb
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Sat May 18 19:21:20 2024 -0600
+
+    Resubiendo
+
+commit 3e7b12f791a0314144946d78e96649af3de1e1cb
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Sat May 18 19:18:01 2024 -0600
+
+    Configurar N:N
+
+commit de8dcc5b61f309dabd015400a7b64e2d5989b4e0
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Sat May 18 11:09:37 2024 -0600
+
+    Actualizando log commits
+
 commit 094e49ddb822f61779dd273d50cdea6d4150fb58
 Merge: 241f885 12b3a15
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
