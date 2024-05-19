@@ -1,3 +1,24 @@
+commit c3fecb4f8fd8908a33e683e091b9e9315c1eed25
+Merge: 94dbafd 1417e39
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Sun May 19 12:26:35 2024 -0600
+
+    Merge pull request #12 from SoyFroylanMtz/cambios
+    
+    Configurando Spatie
+
+commit 1417e39a88164fd2bd25577d0958ab01484cf3ba
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Sun May 19 12:21:43 2024 -0600
+
+    Configurando Spatie
+
+commit 94dbafdc15fed5be9ffbb530b712117853f06dd0
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Sun May 19 10:54:29 2024 -0600
+
+    Actualizando log commits
+
 commit 1927e2d690b4f8155c6b2398b9b0562198d62b48
 Merge: 8438d6c 62e1ecc
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
