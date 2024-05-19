@@ -28,7 +28,7 @@ class MipymeController extends Controller{
 
             $data = [
                 'message' => 'MIPyMEs encontrados',
-                'data' => $mipymes->load('businesses'),
+                'data' => $mipymes->load(['businesses','branches']),
                 'status' => Response::HTTP_OK,
             ];
             return response()->json($data, Response::HTTP_OK);
@@ -102,7 +102,7 @@ class MipymeController extends Controller{
             $mipymes->businesses()->sync($request->business_ids);
             $data = [
                 'message' => 'MIPyME creada',
-                'data' => $mipymes->load('businesses'),
+                'data' => $mipymes->load(['businesses','branches']),
                 'status' => Response::HTTP_CREATED,
             ];
             return response()->json($data, Response::HTTP_CREATED);
@@ -133,7 +133,7 @@ class MipymeController extends Controller{
 
         $data = [
             'message' => 'MIPyME encontrada',
-            'data' => $mipymes->load('businesses'),
+            'data' => $mipymes->load(['businesses','branches']),
             'status' => Response::HTTP_OK,
         ];
         return response() -> json($data,Response::HTTP_OK);
@@ -208,7 +208,7 @@ class MipymeController extends Controller{
         }
         $data = [
             'message' => 'MIPyME actualizada',
-            'data' => $mipymes->load('businesses'),
+            'data' => $mipymes->load(['businesses','branches']),
             'status' => Response::HTTP_OK,
         ];
         return response() -> json($data,Response::HTTP_OK);
@@ -233,7 +233,7 @@ class MipymeController extends Controller{
 
         $data = [
             'message' => 'MIPyME eliminada',
-            'data' => $mipymes,
+            'data' => $mipymes->load(['businesses','branches']),
             'status' => Response::HTTP_OK
         ];
         return response() -> json($data,Response::HTTP_OK);
@@ -301,7 +301,7 @@ class MipymeController extends Controller{
 
         $data = [
             'message' => 'MIPyME actualizada',
-            'restaurants' => $mipymes->load('businesses'),
+            'restaurants' => $mipymes->load(['businesses','branches']),
             'status' => RESPONSE::HTTP_OK
         ];
         return response() -> json($data,RESPONSE::HTTP_OK);
