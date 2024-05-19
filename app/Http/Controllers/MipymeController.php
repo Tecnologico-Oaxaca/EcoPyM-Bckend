@@ -261,7 +261,7 @@ class MipymeController extends Controller{
                 'nullable',
             ],
             'business_ids' => [
-                'sometimes', 'array',
+                'sometimes', 'array','min:1',
                 'exists:busines,id'
             ],
 
@@ -273,6 +273,8 @@ class MipymeController extends Controller{
             'email.email' => 'El email no es válido.',
             'email.max' => 'El email no puede ser mayor a 50 caracteres.',
             'email.unique' => 'El email ya existe.',
+            'business_ids' => 'La MIPyME debe tener al menos un giro comercial.',
+            'area_ids.exists' => 'Uno o más giros comerciales no existen.'
         ]);
 
         if($validator ->fails()){
@@ -301,7 +303,7 @@ class MipymeController extends Controller{
 
         $data = [
             'message' => 'MIPyME actualizada',
-            'restaurants' => $mipymes->load(['businesses','branches']),
+            'data' => $mipymes->load(['businesses','branches']),
             'status' => RESPONSE::HTTP_OK
         ];
         return response() -> json($data,RESPONSE::HTTP_OK);

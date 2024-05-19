@@ -28,7 +28,7 @@ class RoleController extends Controller
 
             $data = [
                 'message' => 'Roles encontrados',
-                'data' => $roles,
+                'data' => $roles->load(['areas']),
                 'status' => Response::HTTP_OK,
             ];
             return response()->json($data, Response::HTTP_OK);
@@ -52,11 +52,20 @@ class RoleController extends Controller
                 'required','string','max:30',
                 Rule::unique('roles', 'name') 
             ],
+            'area_ids' => [
+                'required', 'array'
+            ],
+            'area_ids.*' => [
+                'exists:areas,id'
+            ]
         ], [
             'name.required' => 'El rol es obligatorio',
             'name.string' => 'El rol debe ser una cadena de texto.',
             'name.max' => 'El rol no puede ser mayor a 30 caracteres.',
-            'name.unique' => 'El rol ya existe.', 
+            'name.unique' => 'El rol ya existe.',
+            'area_ids.required' => 'Debe proporcionar al menos un area',
+            'area_ids.*.exists' => 'Uno de las areas proporcionados no existe'
+         
         ]);
     
         if ($validator->fails()) {
@@ -79,9 +88,10 @@ class RoleController extends Controller
                 ];
                 return response()->json($data, Response::HTTP_INTERNAL_SERVER_ERROR);
             }
+            $roles->areas()->sync($request->area_ids);
             $data = [
                 'message' => 'Rol creado',
-                'data' => $roles,
+                'data' => $roles->load(['areas']),
                 'status' => Response::HTTP_CREATED,
             ];
             return response()->json($data, Response::HTTP_CREATED);
@@ -112,7 +122,7 @@ class RoleController extends Controller
 
         $data = [
             'message' => 'Rol encontrad0',
-            'data' => $roles,
+            'data' => $roles->load(['areas']),
             'status' => Response::HTTP_OK,
         ];
         return response() -> json($data,Response::HTTP_OK);
@@ -136,11 +146,19 @@ class RoleController extends Controller
                 'required','string','max:30',
                 Rule::unique('roles', 'name')->ignore($roles->id)
             ],
+            'area_ids' => [
+                'required', 'array'
+            ],
+            'area_ids.*' => [
+                'exists:areas,id'
+            ]
         ], [
             'name.required' => 'El rol es obligatorio',
             'name.string' => 'El rol debe ser una cadena de texto.',
             'name.max' => 'El rol no puede ser mayor a 30 caracteres.',
-            'name.unique' => 'El rol ya existe.', 
+            'name.unique' => 'El rol ya existe.',
+            'area_ids.required' => 'Debe proporcionar al menos un area',
+            'area_ids.*.exists' => 'Uno de las areas proporcionados no existe'
         ]);
 
         if($validator ->fails()){
@@ -153,9 +171,20 @@ class RoleController extends Controller
             return response() -> json($data,Response::HTTP_BAD_REQUEST);
         }
         $roles->update($validator->validated());
+        try {
+            if ($request->has('area_ids')) {
+                $roles->areas()->sync($request->area_ids);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al actualizar los roles',
+                'error' => $e->getMessage(),
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
         $data = [
             'message' => 'Rol actualizado',
-            'data' => $roles,
+            'data' => $roles->load(['areas']),
             'status' => Response::HTTP_OK,
         ];
         return response() -> json($data,Response::HTTP_OK);
@@ -179,7 +208,7 @@ class RoleController extends Controller
 
         $data = [
             'message' => 'Rol eliminado',
-            'data' => $roles,
+            'data' => $roles->load(['areas']),
             'status' => Response::HTTP_OK
         ];
         return response() -> json($data,Response::HTTP_OK);
@@ -200,11 +229,17 @@ class RoleController extends Controller
             'name' => [
                 'string','max:30',Rule::unique('roles', 'name')->ignore($roles->id) 
             ],
+            'area_ids' => [
+                'sometimes', 'array','min:1',
+                'exists:areas,id'
+            ]
 
         ], [
             'name.string' => 'El rol debe ser una cadena de texto.',
             'name.max' => 'El rol no puede ser mayor a 50 caracteres.',
             'name.unique' => 'El rol ya existe.',
+            'area_ids.min' => 'El rol debe tener al menos un área.',
+            'area_ids.exists' => 'Una o más áreas no existen.'
         ]);
 
         if($validator ->fails()){
@@ -224,7 +259,7 @@ class RoleController extends Controller
 
         $data = [
             'message' => 'Rol actualizado',
-            'restaurants' => $roles,
+            'data' => $roles->load(['areas']),
             'status' => RESPONSE::HTTP_OK
         ];
         return response() -> json($data,RESPONSE::HTTP_OK);
