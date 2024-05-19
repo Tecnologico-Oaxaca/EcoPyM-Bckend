@@ -9,4 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends SpatieRole{
     
     use HasFactory;
+
+    public function areas(){
+        return $this->belongsToMany(Area::class, 'area_role', 'role_id', 'area_id');
+    }
 }

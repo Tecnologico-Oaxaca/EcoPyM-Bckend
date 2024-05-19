@@ -17,6 +17,10 @@ class Area extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function roles(){
+        return $this->belongsToMany(Role::class, 'area_role', 'area_id', 'role_id');
+    }
     
     /**
      * The attributes that should be hidden for serialization.
