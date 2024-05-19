@@ -14,9 +14,9 @@ class MipymeController extends Controller{
      * Display a listing of the resource.
      */
     public function index() {
+        
         try {
             $mipymes = Mipyme::all();
-    
             if ($mipymes->isEmpty()) {
                 $data = [
                     'message' => 'MIPyMEs inexistentes',
@@ -28,7 +28,7 @@ class MipymeController extends Controller{
 
             $data = [
                 'message' => 'MIPyMEs encontrados',
-                'data' => $mipymes,
+                'data' => $mipymes->load('businesses'),
                 'status' => Response::HTTP_OK,
             ];
             return response()->json($data, Response::HTTP_OK);
@@ -58,6 +58,12 @@ class MipymeController extends Controller{
             'image' => [
                 'nullable',
             ],
+            'business_ids' => [
+                'required', 'array'
+            ],
+            'business_ids.*' => [
+                'exists:busines,id'
+            ]
 
         ], [
             'name.required' => 'El nombre es obligatorio',
@@ -69,6 +75,8 @@ class MipymeController extends Controller{
             'email.email' => 'El email no es válido.',
             'email.max' => 'El email no puede ser mayor a 50 caracteres.',
             'email.unique' => 'El email ya existe.',
+            'business_ids.required' => 'Debe proporcionar al menos un giro comercial',
+            'business_ids.*.exists' => 'Uno de los giros comerciales proporcionados no existe'
         ]);
     
         if ($validator->fails()) {
@@ -91,9 +99,10 @@ class MipymeController extends Controller{
                 ];
                 return response()->json($data, Response::HTTP_INTERNAL_SERVER_ERROR);
             }
+            $mipymes->businesses()->sync($request->business_ids);
             $data = [
                 'message' => 'MIPyME creada',
-                'data' => $mipymes,
+                'data' => $mipymes->load('businesses'),
                 'status' => Response::HTTP_CREATED,
             ];
             return response()->json($data, Response::HTTP_CREATED);
@@ -111,10 +120,8 @@ class MipymeController extends Controller{
      * Display the specified resource.
      */
 
-    public function show($id)
-    {
+    public function show($id){
         $mipymes = Mipyme::find($id);
-
         if(!$mipymes){
             $data = [
                 'message' => 'MIPyME no encontrada',
@@ -126,7 +133,7 @@ class MipymeController extends Controller{
 
         $data = [
             'message' => 'MIPyME encontrada',
-            'data' => $mipymes,
+            'data' => $mipymes->load('businesses'),
             'status' => Response::HTTP_OK,
         ];
         return response() -> json($data,Response::HTTP_OK);
@@ -148,14 +155,21 @@ class MipymeController extends Controller{
         }
         $validator = Validator::make($request->all(), [
             'name' => [
-                'required','string','max:50',Rule::unique('mipymes', 'name') 
+                'required','string','max:50',Rule::unique('mipymes', 'name')->ignore($mipymes->id)
+ 
             ],
             'email' => [
-                'required','string','max:50','email',Rule::unique('mipymes', 'email') 
+                'required','string','max:50','email',Rule::unique('mipymes', 'email')->ignore($mipymes->id) 
             ],
             'image' => [
                 'nullable',
             ],
+            'business_ids' => [
+                'required', 'array'
+            ],
+            'business_ids.*' => [
+                'exists:busines,id'
+            ]
 
         ], [
             'name.required' => 'El nombre es obligatorio',
@@ -167,6 +181,8 @@ class MipymeController extends Controller{
             'email.email' => 'El email no es válido.',
             'email.max' => 'El email no puede ser mayor a 50 caracteres.',
             'email.unique' => 'El email ya existe.',
+            'business_ids.required' => 'Debe proporcionar al menos un giro comercial',
+            'business_ids.*.exists' => 'Uno de los giros comerciales proporcionados no existe'
         ]);
 
         if($validator ->fails()){
@@ -178,14 +194,21 @@ class MipymeController extends Controller{
             ];
             return response() -> json($data,Response::HTTP_BAD_REQUEST);
         }
-        $mipymes -> name = $request -> name;
-        $mipymes -> email = $request -> email;
-        $mipymes -> image = $request -> image;
-        $mipymes -> save();
-
+        $mipymes->update($validator->validated());
+        try {
+            if ($request->has('business_ids')) {
+                $mipymes->businesses()->sync($request->business_ids);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al actualizar los giros comerciales',
+                'error' => $e->getMessage(),
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
         $data = [
             'message' => 'MIPyME actualizada',
-            'data' => $mipymes,
+            'data' => $mipymes->load('businesses'),
             'status' => Response::HTTP_OK,
         ];
         return response() -> json($data,Response::HTTP_OK);
@@ -229,13 +252,17 @@ class MipymeController extends Controller{
 
         $validator = Validator::make($request->all(), [
             'name' => [
-                'string','max:50',Rule::unique('mipymes', 'name') 
+                'string','max:50',Rule::unique('mipymes', 'name')->ignore($mipymes->id) 
             ],
             'email' => [
-                'string','max:50','email',Rule::unique('mipymes', 'email') 
+                'string','max:50','email',Rule::unique('mipymes', 'email')->ignore($mipymes->id)
             ],
             'image' => [
                 'nullable',
+            ],
+            'business_ids' => [
+                'sometimes', 'array',
+                'exists:busines,id'
             ],
 
         ], [
@@ -267,11 +294,14 @@ class MipymeController extends Controller{
         if($request -> has('image')){
             $mipymes -> image = $request -> image;
         }
+        if ($request->has('business_ids')) {
+            $mipymes->businesses()->sync($request->business_ids);
+        }
         $mipymes -> save();
 
         $data = [
             'message' => 'MIPyME actualizada',
-            'restaurants' => $mipymes,
+            'restaurants' => $mipymes->load('businesses'),
             'status' => RESPONSE::HTTP_OK
         ];
         return response() -> json($data,RESPONSE::HTTP_OK);
