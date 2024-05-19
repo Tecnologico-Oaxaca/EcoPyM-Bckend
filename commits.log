@@ -1,3 +1,24 @@
+commit 8090aa539d33279f3c6300e4482518f1f6f30484
+Merge: 5cd345c 7ebc239
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Sun May 19 12:31:38 2024 -0600
+
+    Merge pull request #13 from SoyFroylanMtz/rama-nueva
+    
+    campo unico name
+
+commit 7ebc239b5c2807114ba2d22da6008db02ab6c78b
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Sun May 19 12:30:32 2024 -0600
+
+    campo unico name
+
+commit 5cd345c6c027c1e60cd739b584d2a1083d83f2a9
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Sun May 19 12:27:56 2024 -0600
+
+    Actualizando log commits
+
 commit c3fecb4f8fd8908a33e683e091b9e9315c1eed25
 Merge: 94dbafd 1417e39
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
