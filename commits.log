@@ -1,3 +1,24 @@
+commit 2094520933c2566794f6509c59a21c3d5b0cc066
+Merge: 747f1e7 47543a2
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Sun May 19 03:06:41 2024 -0600
+
+    Merge pull request #10 from SoyFroylanMtz/rama-nueva
+    
+    Agregando libreria Spatie
+
+commit 47543a2bc4ecd9c42d9e4bbb2d8ae4e66d34b900
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Sun May 19 03:05:36 2024 -0600
+
+    Agregando libreria Spatie
+
+commit 747f1e773e7066d695e08a10d7522e70ebc861f9
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Sun May 19 01:55:38 2024 -0600
+
+    Actualizando log commits
+
 commit 35cc7c2a6da211f70f92d455af0621f7695a585c
 Merge: c2578ad c0995f1
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
