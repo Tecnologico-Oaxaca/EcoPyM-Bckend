@@ -31,6 +31,10 @@ class Branch extends Model
         return $this->belongsTo(Mipyme::class, 'mipyme_id');
     }
     
+    public function users() {
+        return $this->hasMany(User::class);
+    }
+    
     /**
      * The attributes that should be hidden for serialization.
      *

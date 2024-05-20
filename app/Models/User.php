@@ -19,9 +19,17 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'last_name',
+        'phone',
         'email',
         'password',
+        'image',
+        'branch_id'
     ];
+
+    public function branch() {
+        return $this->belongsTo(Branch::class,'branch_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
