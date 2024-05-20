@@ -3,6 +3,7 @@
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\BusineController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\MipymeController;
 use App\Http\Controllers\RoleController;
@@ -56,3 +57,10 @@ Route::post('/users',[UserController::class, 'store']);
 Route::put('/users/{id}',[UserController::class, 'update']);
 Route::patch('/users/{id}',[UserController::class, 'updatePartial']);
 Route::delete('/users/{id}',[UserController::class, 'destroy']);
+
+Route::get('/comments',[CommentController::class, 'index']);
+Route::get('/comments/{id}',[CommentController::class, 'show']);
+Route::post('/comments',[CommentController::class, 'store']);
+Route::put('/comments/{id}',[CommentController::class, 'update']);
+Route::patch('/comments/{id}',[CommentController::class, 'updatePartial']);
+Route::delete('/comments/{id}',[CommentController::class, 'destroy']);
