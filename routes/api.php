@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\MipymeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WorkShiftController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -64,3 +65,10 @@ Route::post('/comments',[CommentController::class, 'store']);
 Route::put('/comments/{id}',[CommentController::class, 'update']);
 Route::patch('/comments/{id}',[CommentController::class, 'updatePartial']);
 Route::delete('/comments/{id}',[CommentController::class, 'destroy']);
+
+Route::get('/workshifts',[WorkShiftController::class, 'index']);
+Route::get('/workshifts/{id}',[WorkShiftController::class, 'show']);
+Route::post('/workshifts',[WorkShiftController::class, 'store']);
+Route::put('/workshifts/{id}',[WorkShiftController::class, 'update']);
+Route::patch('/workshifts/{id}',[WorkShiftController::class, 'updatePartial']);
+Route::delete('/workshifts/{id}',[WorkShiftController::class, 'destroy']);
