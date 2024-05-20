@@ -28,14 +28,14 @@ class MipymeController extends Controller{
 
             $data = [
                 'message' => 'MIPyMEs encontrados',
-                'data' => $mipymes->load(['businesses','branches']),
+                'data' => $mipymes->load(['businesses','branches.users']),
                 'status' => Response::HTTP_OK,
             ];
             return response()->json($data, Response::HTTP_OK);
     
         } catch (\Exception $e) {
             $data = [
-                'message' => 'Error al obtener las MIPyMEs',
+                'message' => 'Error al obtener las MIPyMEs'. $e->getMessage(),
                 'data' => null,
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
             ];
@@ -133,7 +133,7 @@ class MipymeController extends Controller{
 
         $data = [
             'message' => 'MIPyME encontrada',
-            'data' => $mipymes->load(['businesses','branches']),
+            'data' => $mipymes->load(['businesses','branches.users']),
             'status' => Response::HTTP_OK,
         ];
         return response() -> json($data,Response::HTTP_OK);
