@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\BusineController;
 use App\Http\Controllers\CommentController;
@@ -14,9 +15,12 @@ use App\Http\Controllers\WorkShiftController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+Route::middleware('auth:sanctum')->group(function() {
+    Route::get('/profile', [AuthController::class, 'profile']);
+    Route::get('/logout', [AuthController::class, 'logout']);
+});
 
 Route::get('/busine',[BusineController::class, 'index']);
 Route::get('/busine/{id}',[BusineController::class, 'show']);
