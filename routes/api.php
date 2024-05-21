@@ -5,6 +5,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\BusineController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DayController;
 use App\Http\Controllers\MipymeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -72,3 +73,10 @@ Route::post('/workshifts',[WorkShiftController::class, 'store']);
 Route::put('/workshifts/{id}',[WorkShiftController::class, 'update']);
 Route::patch('/workshifts/{id}',[WorkShiftController::class, 'updatePartial']);
 Route::delete('/workshifts/{id}',[WorkShiftController::class, 'destroy']);
+
+Route::get('/days',[DayController::class, 'index']);
+Route::post('/days',[DayController::class, 'store']);
+Route::put('/days/{id}',[DayController::class, 'update']);
+Route::get('/days/{id}',[DayController::class, 'show']);
+Route::patch('/days/{id}',[DayController::class, 'updatePartial']);
+Route::delete('/days/{id}',[DayController::class, 'destroy']);
