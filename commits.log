@@ -1,3 +1,24 @@
+commit 1a2124b245d6e0c4b54cf00088409feaf51f6329
+Merge: e6239c2 5ce5185
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Tue May 21 13:58:25 2024 -0600
+
+    Merge pull request #24 from SoyFroylanMtz/cambios
+    
+    Desarrollo de la Autenticacion
+
+commit 5ce5185a0c7264ecfb92f1fcb584a82f9da51450
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Tue May 21 13:56:28 2024 -0600
+
+    Desarrollo de la Autenticacion
+
+commit e6239c202f2e2c6e0413b17ef2d01acd9de9f9f0
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Tue May 21 12:38:25 2024 -0600
+
+    Actualizando log commits
+
 commit 264770ea051c075b55f8cacc603ee91a802adcaa
 Merge: 64d07da 6902d23
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
