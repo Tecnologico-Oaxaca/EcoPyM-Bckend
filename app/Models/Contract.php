@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class WorkShift extends Model
+class Contract extends Model
 {
     use HasFactory;
 
@@ -15,12 +15,23 @@ class WorkShift extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'salary',
+        'start_date',
+        'end_date',
+        'work_shift_id',
+        'user_id',
     ];
 
-    public function contract(){
-        return $this->hasOne(Contract::class);
+    public function workShift()
+    {
+        return $this->belongsTo(WorkShift::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,5 +53,12 @@ class WorkShift extends Model
         return [
             
         ];
+    }
+    protected static function booted()
+    {
+        static::creating(function ($contract) {
+            $user = User::findOrFail($contract->user_id);
+            $contract->start_date = $user->created_at->format('Y-m-d');
+        });
     }
 }
