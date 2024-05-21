@@ -31,6 +31,11 @@ class Contract extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function days()
+    {
+        return $this->belongsToMany(Day::class, 'contract_days')
+                    ->withPivot('is_work_day');
+    }
 
 
     /**
