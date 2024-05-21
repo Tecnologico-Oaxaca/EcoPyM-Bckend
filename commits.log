@@ -1,3 +1,24 @@
+commit 264770ea051c075b55f8cacc603ee91a802adcaa
+Merge: 64d07da 6902d23
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Tue May 21 12:36:13 2024 -0600
+
+    Merge pull request #23 from SoyFroylanMtz/rama-nueva
+    
+    Configuracion del modelo Contract
+
+commit 6902d23cba888234ed0cc076de1c38afeea4d3c3
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Tue May 21 12:34:37 2024 -0600
+
+    Configuracion del modelo Contract
+
+commit 64d07dad936d129e3c64b151f0881de26eda01bf
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Tue May 21 09:19:16 2024 -0600
+
+    Actualizando log commits
+
 commit 0d4ec4a3e984ee7e74d06414461d8fabf7190220
 Merge: ba98b5c 3972fe3
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
