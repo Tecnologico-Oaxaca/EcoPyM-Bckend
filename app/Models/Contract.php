@@ -33,7 +33,7 @@ class Contract extends Model
     }
     public function days()
     {
-        return $this->belongsToMany(Day::class, 'contract_days')
+        return $this->belongsToMany(Day::class, 'contract_days','contract_id','day_id')
                     ->withPivot('is_work_day');
     }
 

@@ -27,7 +27,7 @@ class ContractController extends Controller
 
             $data = [
                 'message' => 'Contratos encontrados',
-                'data' => $comtracts,
+                'data' => $comtracts->load('days'),
                 'status' => Response::HTTP_OK,
             ];
             return response()->json($data, Response::HTTP_OK);
@@ -59,6 +59,15 @@ class ContractController extends Controller
             'user_id' => [
                 'required', 'exists:users,id'
             ],
+            'days' => [
+                'required', 'array'
+            ],
+            'days.*.day_id' => [
+                'required', 'exists:days,id'
+            ],
+            'days.*.is_work_day' => [
+                'required', 'boolean'
+            ],
         ], [
             'salary.required' => 'El salario es obligatorio.',
             'salary.numeric' => 'El salario debe ser un número.',
@@ -69,13 +78,19 @@ class ContractController extends Controller
             'work_shift_id.exists' => 'El ID del turno de trabajo no es válido.',
             'user_id.required' => 'El ID del usuario es obligatorio.',
             'user_id.exists' => 'El ID del usuario no es válido.',
-            
+            'days.required' => 'Los días son obligatorios.',
+            'days.array' => 'Los días deben ser un array.',
+            'days.*.day_id.required' => 'El ID del día es obligatorio.',
+            'days.*.day_id.exists' => 'El ID del día no es válido.',
+            'days.*.is_work_day.required' => 'El campo de día laboral es obligatorio.',
+            'days.*.is_work_day.boolean' => 'El campo de día laboral debe ser verdadero o falso.'
+
         ]);
     
         if ($validator->fails()) {
             $data =[
                 'message' => 'Validación fallida',
-                'errors' => $validator->error(),
+                'errors' => $validator->errors(),
                 'data' => null,
                 'status' => Response::HTTP_UNPROCESSABLE_ENTITY,
             ];
@@ -102,9 +117,14 @@ class ContractController extends Controller
                 return response()->json($data, Response::HTTP_INTERNAL_SERVER_ERROR);
             }
 
+            $dayData = collect($request->days)->mapWithKeys(function ($day) {
+                return [$day['day_id'] => ['is_work_day' => $day['is_work_day']]];
+            })->toArray();
+            $contracts->days()->sync($dayData);
+
             $data = [
                 'message' => 'Contrato creado',
-                'data' => $contracts,
+                'data' => $contracts->load('days'),
                 'status' => Response::HTTP_CREATED,
             ];
             return response()->json($data, Response::HTTP_CREATED);
@@ -133,7 +153,7 @@ class ContractController extends Controller
 
         $data = [
             'message' => 'Contrato encontrado',
-            'data' => $contracts,
+            'data' => $contracts->load('days'),
             'status' => Response::HTTP_OK,
         ];
         return response() -> json($data,Response::HTTP_OK);
@@ -165,6 +185,15 @@ class ContractController extends Controller
             'work_shift_id' => [
                 'required', 'exists:work_shifts,id'
             ],
+            'days' => [
+                'required', 'array'
+            ],
+            'days.*.day_id' => [
+                'required', 'exists:days,id'
+            ],
+            'days.*.is_work_day' => [
+                'required', 'boolean'
+            ],
         ], [
             'salary.required' => 'El salario es obligatorio.',
             'salary.numeric' => 'El salario debe ser un número.',
@@ -175,6 +204,13 @@ class ContractController extends Controller
             'end_date.after_or_equal' => 'La fecha de fin debe ser posterior o igual a la fecha de inicio.',
             'work_shift_id.required' => 'El ID del turno de trabajo es obligatorio.',
             'work_shift_id.exists' => 'El ID del turno de trabajo no es válido.',
+            'days.required' => 'Los días son obligatorios.',
+            'days.array' => 'Los días deben ser un array.',
+            'days.*.day_id.required' => 'El ID del día es obligatorio.',
+            'days.*.day_id.exists' => 'El ID del día no es válido.',
+            'days.*.is_work_day.required' => 'El campo de día laboral es obligatorio.',
+            'days.*.is_work_day.boolean' => 'El campo de día laboral debe ser verdadero o falso.'
+
         ]);
 
         if($validator ->fails()){
@@ -186,10 +222,27 @@ class ContractController extends Controller
             ];
             return response() -> json($data,Response::HTTP_BAD_REQUEST);
         }
+
         $contracts->update($validator->validated());
+        
+        try {
+            if ($request->has('days')) {
+                $dayData = collect($request->days)->mapWithKeys(function ($day) {
+                    return [$day['day_id'] => ['is_work_day' => $day['is_work_day']]];
+                })->toArray();
+                $contracts->days()->sync($dayData);
+            }
+        } catch (\Exception $e) {
+            $data = [
+                'message' => 'Error al actualizar los dias laborados y descanso',
+                'error' => $e->getMessage(),
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ];
+            return response() -> json($data,Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
         $data = [
             'message' => 'Contrato actualizado',
-            'data' => $contracts,
+            'data' => $contracts->load('days'),
             'status' => Response::HTTP_OK,
         ];
         return response() -> json($data,Response::HTTP_OK);
@@ -244,6 +297,15 @@ class ContractController extends Controller
             'work_shift_id' => [
                 'exists:work_shifts,id'
             ],
+            'days' => [
+                'sometimes', 'array'
+            ],
+            'days.*.day_id' => [
+                'exists:days,id'
+            ],
+            'days.*.is_work_day' => [
+                'boolean'
+            ],
         ], [
             'salary.numeric' => 'El salario debe ser un número.',
             'salary.max' => 'El salario no puede ser mayor de 9999.99.',
@@ -251,6 +313,8 @@ class ContractController extends Controller
             'end_date.date' => 'La fecha de fin debe ser una fecha válida.',
             'end_date.after_or_equal' => 'La fecha de fin debe ser posterior o igual a la fecha de inicio.',
             'work_shift_id.exists' => 'El ID del turno de trabajo no es válido.',
+            'days.*.day_id.exists' => 'El ID del día no es válido.',
+            'days.*.is_work_day.boolean' => 'El campo de día laboral debe ser verdadero o falso.'
         ]);
 
         if($validator ->fails()){
@@ -265,7 +329,7 @@ class ContractController extends Controller
         $startDate = $request->start_date ?? $contracts->start_date;
         if ($request->has('end_date') && strtotime($request->end_date) < strtotime($startDate)) {
             return response()->json([
-                'message' => 'La fecha fin debe despues de la fecha inicio',
+                'message' => 'La fecha fin debe ser despues de la fecha inicio',
                 'data' => null,
                 'status' => Response::HTTP_BAD_REQUEST
             ], Response::HTTP_BAD_REQUEST);
@@ -288,6 +352,13 @@ class ContractController extends Controller
         if ($request->has('work_shift_id')) {
             $contracts->work_shift_id = $request->work_shift_id;
             $updatedFields['work_shift_id'] = $request->work_shift_id;
+        }
+        if ($request->has('days')) {
+            $dayData = collect($request->days)->mapWithKeys(function ($day) {
+                return [$day['day_id'] => ['is_work_day' => $day['is_work_day']]];
+            })->toArray();
+            $contracts->days()->sync($dayData);
+            $updatedFields['days'] = $dayData;
         }
 
         $contracts->save();
