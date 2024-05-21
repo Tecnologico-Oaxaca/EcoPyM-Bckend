@@ -27,6 +27,11 @@ class Day extends Model
         'created_at',
         'updated_at',
     ];
+    public function contracts()
+    {
+        return $this->belongsToMany(Contract::class, 'contract_days')
+                    ->withPivot('is_work_day');
+    }
 
     /**
      * Get the attributes that should be cast.
