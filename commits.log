@@ -1,3 +1,24 @@
+commit 0d4ec4a3e984ee7e74d06414461d8fabf7190220
+Merge: ba98b5c 3972fe3
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Tue May 21 09:17:00 2024 -0600
+
+    Merge pull request #22 from SoyFroylanMtz/cambios
+    
+    Relacion N:N Contract-Day
+
+commit 3972fe310f1ccb022ad0bfcdad60c8f3f3dc68eb
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Tue May 21 09:07:21 2024 -0600
+
+    Relacion N:N Contract-Day
+
+commit ba98b5c4b6af9a9d082264dfdfa6b4ad092fe5f3
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Tue May 21 08:24:29 2024 -0600
+
+    Actualizando log commits
+
 commit 28f25cf4ffd05be409eac77227c23d104ad5ec89
 Merge: d591914 daa7059
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
