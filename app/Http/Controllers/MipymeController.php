@@ -158,7 +158,7 @@ class MipymeController extends Controller{
  
             ],
             'email' => [
-                'nulleable','string','max:50','email',Rule::unique('mipymes', 'email')->ignore($mipymes->id) 
+                'required','string','max:50','email',Rule::unique('mipymes', 'email')->ignore($mipymes->id) 
             ],
             'image' => [
                 'nullable',
@@ -175,6 +175,7 @@ class MipymeController extends Controller{
             'name.string' => 'El nombre debe ser una cadena de texto.',
             'name.max' => 'El nombre no puede ser mayor a 50 caracteres.',
             'name.unique' => 'El nombre ya existe.',
+            'email.required' => 'El email es obligatorio',
             'email.string' => 'El email debe ser una cadena de texto.',
             'email.email' => 'El email no es válido.',
             'email.max' => 'El email no puede ser mayor a 50 caracteres.',
