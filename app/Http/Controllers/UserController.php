@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Branch;
+use App\Models\Mipyme;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
     /**
@@ -107,7 +110,25 @@ class UserController extends Controller
             return response()->json($data, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         try {
+            DB::beginTransaction();
             $users = User::create($validator->validated());
+            $role = Role::findById($request->input('role_id'));
+            $users->assignRole($role->name);
+            $mipyme = Mipyme::find($request->input('mipyme_id'));
+
+        if ($mipyme) {
+            $mipyme->update(['email' => $request->email]);
+        }
+
+        // Actualización del teléfono en Branch
+        $branch = Branch::find($request->input('branch_id'));
+        if ($branch) {
+            $branch->update(['phone' => $request->phone]);
+        }
+
+        // Commit de la transacción
+        DB::commit();
+    
             if (!$users) {
                 $data = [
                     'message' => 'Error al crear el usuario',
@@ -127,6 +148,7 @@ class UserController extends Controller
             ];
             return response()->json($data, Response::HTTP_CREATED);
         } catch (\Exception $e) {
+            DB::rollBack();
             $data = [
                 'message' => 'Error al crear el usuario'. $e->getMessage(),
                 'data' => null,
