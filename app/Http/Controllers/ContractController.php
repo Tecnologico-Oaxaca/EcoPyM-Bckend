@@ -180,7 +180,7 @@ class ContractController extends Controller
                 'required', 'date'
             ],
             'end_date' => [
-                'nullable', 'date', 'after_or_equal:start_date'
+                'required', 'date', 'after_or_equal:start_date'
             ],
             'work_shift_id' => [
                 'required', 'exists:work_shifts,id'
@@ -200,6 +200,7 @@ class ContractController extends Controller
             'salary.max' => 'El salario no puede ser mayor de 9999.99.',
             'start_date.required' => 'La fecha de inicio es obligatoria.',
             'start_date.date' => 'La fecha de inicio debe ser una fecha válida.',
+            'end_date.required' => 'La fecha de fin es obligatoria.',
             'end_date.date' => 'La fecha de fin debe ser una fecha válida.',
             'end_date.after_or_equal' => 'La fecha de fin debe ser posterior o igual a la fecha de inicio.',
             'work_shift_id.required' => 'El ID del turno de trabajo es obligatorio.',
@@ -292,7 +293,7 @@ class ContractController extends Controller
                 'date'
             ],
             'end_date' => [
-                'sometimes', 'date', 'after_or_equal:start_date'
+                'date', 'after_or_equal:start_date'
             ],
             'work_shift_id' => [
                 'exists:work_shifts,id'
