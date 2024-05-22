@@ -189,7 +189,7 @@ class BranchController extends Controller
                 'required', 'date_format:H:i','after:open_time'
             ],
             'phone' => [
-                'nullable','digits:10',Rule::unique('branches', 'phone')->ignore($branches->id)
+                'required','digits:10',Rule::unique('branches', 'phone')->ignore($branches->id)
             ],
             'state' => [
                 'required',
@@ -198,12 +198,8 @@ class BranchController extends Controller
                         return $query->where('city', $request->city)
                                      ->where('district', $request->district)
                                      ->where('street', $request->street)
+                                     ->where('number', $request->number)
                                      ->where('id', '<>', $branches->id); 
-                                     if ($request->filled('number')) {
-                                        $query->where('number', $request->number);
-                                    } else {
-                                        $query->whereNull('number');
-                                    }
                     }),
             ],            
             'city' => [
@@ -228,6 +224,7 @@ class BranchController extends Controller
             'close_time.required' => 'El horario de cierre es obligatorio.',
             'close_time.date_format' => 'El horario de cierre debe estar en el formato correcto (HH:mm).',
             'close_time.after' => 'El horario de cierre debe ser posterior al horario de apertura.',
+            'phone.required' => 'El teléfono es obligatorio.',
             'phone.digits' => 'El número de teléfono debe tener exactamente 10 dígitos.',
             'phone.unique' => 'El numero ya existe.',
             'state.required' => 'El estado es obligatorio.',
@@ -310,7 +307,7 @@ class BranchController extends Controller
                 'sometimes', 'date_format:H:i', 'after:open_time'
             ],
             'phone' => [
-                'sometimes', 'digits:10', Rule::unique('branches', 'phone')->ignore($branches->id)
+                'required', 'digits:10', Rule::unique('branches', 'phone')->ignore($branches->id)
             ],
             'state' => [
                 'required_with_all:city,district,street,number',
@@ -342,6 +339,7 @@ class BranchController extends Controller
             'open_time.date_format' => 'El horario de apertura debe estar en el formato correcto (HH:mm).',
             'close_time.date_format' => 'El horario de cierre debe estar en el formato correcto (HH:mm).',
             'close_time.after' => 'El horario de cierre debe ser posterior al horario de apertura.',
+            'phone.required' => 'El teléfono es requerido.',
             'phone.digits' => 'El número de teléfono debe tener exactamente 10 dígitos.',
             'phone.unique' => 'El número ya existe.',
             'state.required_with_all' => 'El campo state es obligatorio cuando city, district, street, y number están presentes.',
