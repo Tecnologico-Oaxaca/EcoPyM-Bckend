@@ -1,3 +1,24 @@
+commit 717f6dbc3a0b11705befe1285d1792bc177e3c81
+Merge: e4bbf17 b6bed88
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Wed May 22 05:38:41 2024 -0600
+
+    Merge pull request #28 from SoyFroylanMtz/rama
+    
+    Configuracion Envio de Datos
+
+commit b6bed88ac4d9b53ff8ca0bd0af0fe2b0b6d8830d
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Wed May 22 05:34:21 2024 -0600
+
+    Configuracion Envio de Datos
+
+commit e4bbf175ccb59fdcbe39731fb05e7c52e5ee1cd7
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Wed May 22 01:05:37 2024 -0600
+
+    Actualizando log commits
+
 commit f748f9f3ca5cffceabd886518cac630fa55ca549
 Merge: 64e70cc 39f1732
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
