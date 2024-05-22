@@ -28,7 +28,7 @@ class UserController extends Controller
 
             $data = [
                 'message' => 'Usuarios encontrados',
-                'data' => $users->load(['roles', 'branch']),
+                'data' => $users->load(['roles', 'branch','assists']),
                 'status' => Response::HTTP_OK,
             ];
             return response()->json($data, Response::HTTP_OK);
