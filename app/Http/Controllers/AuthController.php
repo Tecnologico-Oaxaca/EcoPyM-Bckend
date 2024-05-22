@@ -20,6 +20,13 @@ class AuthController extends Controller
         if(!empty($user)){
             if(Hash::check($request -> password, $user->password )){
                 $token = $user -> createToken('miToken') -> plainTextToken;
+
+                $user->assists()->create([
+                    'date' => now()->toDateString(),
+                    'time' => now()->toTimeString(),
+                    'is_session_start' => true,
+                ]);
+
                 $data = [
                     'message' => 'Token Generado',
                     'token' => $token,
@@ -56,8 +63,14 @@ class AuthController extends Controller
 
     public function logout(){
         $user = auth() -> user();
-        $user -> tokens() -> delete();
+        
+        $user->assists()->create([
+            'date' => now()->toDateString(),
+            'time' => now()->toTimeString(),
+            'is_session_start' => false,
+        ]);
 
+        $user -> tokens() -> delete();
         $data = [
             'message' => 'Sesion cerrada',
             'status' => 200
