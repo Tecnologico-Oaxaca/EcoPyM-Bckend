@@ -56,13 +56,13 @@ class UserController extends Controller
                 'required', 'string', 'max:50'
             ],
             'last_name' => [
-                'required', 'string', 'max:50'
+                'nullable', 'string', 'max:50'
             ],
             'phone' => [
-                'required', 'digits:10', Rule::unique('users', 'phone')
+                'nullable', 'digits:10', Rule::unique('users', 'phone')
             ],
             'email' => [
-                'required', 'string', 'max:50', 'email', Rule::unique('users', 'email')
+                'nullable', 'string', 'max:50', 'email', Rule::unique('users', 'email')
             ],
             'password' => [
                 'required', 'string', 'min:8'
@@ -80,13 +80,10 @@ class UserController extends Controller
             'name.required' => 'El nombre es obligatorio.',
             'name.string' => 'El nombre debe ser una cadena de texto.',
             'name.max' => 'El nombre no puede tener más de 50 caracteres.',
-            'last_name.required' => 'El apellido es obligatorio.',
             'last_name.string' => 'El apellido debe ser una cadena de texto.',
             'last_name.max' => 'El apellido no puede tener más de 50 caracteres.',
-            'phone.required' => 'El teléfono es obligatorio.',
             'phone.digits' => 'El teléfono debe contener exactamente 10 dígitos.',
             'phone.unique' => 'El teléfono ya está registrado.',
-            'email.required' => 'El correo electrónico es obligatorio.',
             'email.string' => 'El correo debe ser una cadena de texto.',
             'email.max' => 'El correo no puede tener más de 50 caracteres.',
             'email.email' => 'El correo debe ser una dirección de correo electrónico válida.',
