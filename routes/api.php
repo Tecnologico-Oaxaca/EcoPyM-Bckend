@@ -4,6 +4,7 @@ use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\BusineController;
+use App\Http\Controllers\CashOpeningController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\DayController;
@@ -90,3 +91,6 @@ Route::post('/contracts',[ContractController::class, 'store']);
 Route::put('/contracts/{id}',[ContractController::class, 'update']);
 Route::patch('/contracts/{id}',[ContractController::class, 'updatePartial']);
 Route::delete('/contracts/{id}',[ContractController::class, 'destroy']);
+
+Route::get('/cashOpenings',[CashOpeningController::class, 'index']);
+Route::post('/cashOpenings',[CashOpeningController::class, 'store']);
