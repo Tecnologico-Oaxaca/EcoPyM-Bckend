@@ -1,3 +1,24 @@
+commit d04027cceff773f79d4302054d63d506ba8d6573
+Merge: 72f0100 25fa51b
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Thu May 23 01:06:22 2024 -0600
+
+    Merge pull request #33 from SoyFroylanMtz/rama-nueva
+    
+    Desarrollo Api RegisterBusines
+
+commit 25fa51be277a6d25cbf61bd16b3ed93ba51f11a7
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Thu May 23 01:04:27 2024 -0600
+
+    Desarrollo Api RegisterBusines
+
+commit 72f0100a35e91564e08f713af794e7fdc86e9193
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Thu May 23 00:36:40 2024 -0600
+
+    Actualizando log commits
+
 commit 281a203451fc8b2f8f503caf849f9f142dd2b541
 Merge: a321647 81c321e
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
