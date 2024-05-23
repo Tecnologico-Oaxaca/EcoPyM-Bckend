@@ -128,6 +128,7 @@ class RegisterBusinesController extends Controller
                 'data' => [
                     'mipyme' => $mipyme->load(['businesses', 'branches']),
                     'branch' => $branch,
+                    'branch_id' => $branch->id,
                 ],
                 'status' => Response::HTTP_CREATED,
             ];
