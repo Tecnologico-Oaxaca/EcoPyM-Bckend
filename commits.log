@@ -1,3 +1,24 @@
+commit fab8b4ff149791bdc712a7aaeaee17e294f9d114
+Merge: 849d31c 947e7c8
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Thu May 23 09:25:45 2024 -0600
+
+    Merge pull request #34 from SoyFroylanMtz/cambios
+    
+    Return Branch_id
+
+commit 947e7c88acfd44bd63bcc5e19ce9322134c486a7
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Thu May 23 09:24:09 2024 -0600
+
+    Return Branch_id
+
+commit 849d31c7e85c660372ce64bd3929e0d3776dbf6e
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Thu May 23 01:07:44 2024 -0600
+
+    Actualizando log commits
+
 commit d04027cceff773f79d4302054d63d506ba8d6573
 Merge: 72f0100 25fa51b
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
