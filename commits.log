@@ -1,3 +1,24 @@
+commit 281a203451fc8b2f8f503caf849f9f142dd2b541
+Merge: a321647 81c321e
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Thu May 23 00:33:30 2024 -0600
+
+    Merge pull request #32 from SoyFroylanMtz/cambios
+    
+    Desarrollando Api CashOpening
+
+commit 81c321e73225c12db881bf8be107ac0ed987a713
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Thu May 23 00:31:40 2024 -0600
+
+    Desarrollando Api CashOpening
+
+commit a321647eb43adef5a66008711a17835a6fec506e
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Wed May 22 16:33:20 2024 -0600
+
+    Actualizando log commits
+
 commit 5a77c1cb09ef2f1794980cbc987dbbaf43b50d71
 Merge: ce5a24c 4f2d5f4
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
