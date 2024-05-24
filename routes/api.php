@@ -16,9 +16,11 @@ use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\RegisterBusinesController;
 use App\Http\Controllers\RegisterEmployeeController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UnitQuantityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkShiftController;
 use App\Models\Department;
+use App\Models\UnitQuantity;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -133,3 +135,10 @@ Route::post('/departments',[DepartmentController::class, 'store']);
 Route::put('/departments/{id}',[DepartmentController::class, 'update']);
 Route::patch('/departments/{id}',[DepartmentController::class, 'updatePartial']);
 Route::delete('/departments/{id}',[DepartmentController::class, 'destroy']);
+
+Route::get('/units',[UnitQuantityController::class, 'index']);
+Route::get('/units/{id}',[UnitQuantityController::class, 'show']);
+Route::post('/units',[UnitQuantityController::class, 'store']);
+Route::put('/units/{id}',[UnitQuantityController::class, 'update']);
+Route::patch('/units/{id}',[UnitQuantityController::class, 'updatePartial']);
+Route::delete('/units/{id}',[UnitQuantityController::class, 'destroy']);
