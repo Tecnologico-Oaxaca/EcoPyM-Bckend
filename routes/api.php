@@ -10,6 +10,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\DayController;
 use App\Http\Controllers\MipymeController;
+use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\RegisterBusinesController;
 use App\Http\Controllers\RegisterEmployeeController;
 use App\Http\Controllers\RoleController;
@@ -108,3 +109,10 @@ Route::post('/companies',[CompanyController::class, 'store']);
 Route::put('/companies/{id}',[CompanyController::class, 'update']);
 Route::patch('/companies/{id}',[CompanyController::class, 'updatePartial']);
 Route::delete('/companies/{id}',[CompanyController::class, 'destroy']);
+
+Route::get('/providers',[ProviderController::class, 'index']);
+Route::get('/providers/{id}',[ProviderController::class, 'show']);
+Route::post('/providers',[ProviderController::class, 'store']);
+Route::put('/providers/{id}',[ProviderController::class, 'update']);
+Route::patch('/providers/{id}',[ProviderController::class, 'updatePartial']);
+Route::delete('/providers/{id}',[ProviderController::class, 'destroy']);
