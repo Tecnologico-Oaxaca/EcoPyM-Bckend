@@ -10,6 +10,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\DayController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\MipymeController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\RegisterBusinesController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\RegisterEmployeeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkShiftController;
+use App\Models\Department;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -124,3 +126,10 @@ Route::post('/categories',[CategoryController::class, 'store']);
 Route::put('/categories/{id}',[CategoryController::class, 'update']);
 Route::patch('/categories/{id}',[CategoryController::class, 'updatePartial']);
 Route::delete('/categories/{id}',[CategoryController::class, 'destroy']);
+
+Route::get('/departments',[DepartmentController::class, 'index']);
+Route::get('/departments/{id}',[DepartmentController::class, 'show']);
+Route::post('/departments',[DepartmentController::class, 'store']);
+Route::put('/departments/{id}',[DepartmentController::class, 'update']);
+Route::patch('/departments/{id}',[DepartmentController::class, 'updatePartial']);
+Route::delete('/departments/{id}',[DepartmentController::class, 'destroy']);
