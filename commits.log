@@ -1,3 +1,24 @@
+commit 54f96c69883f27e0991bc6627a09efc1728799a8
+Merge: 08650cc 0ee6659
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Fri May 24 08:23:07 2024 -0600
+
+    Merge pull request #42 from SoyFroylanMtz/rama-nueva
+    
+    Desarrollo Api UnityQuantity - Correccion
+
+commit 0ee66591445a30005f639694f42a0751918eedce
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Fri May 24 08:20:24 2024 -0600
+
+    Desarrollo Api UnityQuantity - Correccion
+
+commit 08650ccff10c969721d502ac3dd2c8d7b5ecf04d
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Fri May 24 07:46:07 2024 -0600
+
+    Actualizando log commits
+
 commit 96a26bfb8fc6154822c286febc115571797a686d
 Merge: 1cda78f 73eff95
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
