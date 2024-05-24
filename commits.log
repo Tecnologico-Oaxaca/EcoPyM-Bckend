@@ -1,3 +1,24 @@
+commit 366a44de54c4b199180dcbc468b1bb9a73ada289
+Merge: 9824c9d 644766b
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Thu May 23 23:51:30 2024 -0600
+
+    Merge pull request #38 from SoyFroylanMtz/rama-nueva
+    
+    Configurar N:N Companies-Providers
+
+commit 644766b0cd466651d854eadc27035a997bacf385
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Thu May 23 23:50:42 2024 -0600
+
+    Configurar N:N Companies-Providers
+
+commit 9824c9d5a706871570c303d83302fa27611b4f0e
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Thu May 23 23:10:33 2024 -0600
+
+    Actualizando log commits
+
 commit 20bf28eedbfc8161bcd75c327caabc3c2b34f5bd
 Merge: b981a77 699bdf1
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
