@@ -196,7 +196,7 @@ class CategoryController extends Controller
             ];
             return response() -> json($data,Response::HTTP_NOT_FOUND);
         }
-
+        
         $validator = Validator::make($request->all(), [
             'name' => [
                 'string','max:50',
@@ -218,15 +218,17 @@ class CategoryController extends Controller
             ];
             return response() -> json($data,Response::HTTP_BAD_REQUEST);
         }
+        $updatedFields = [];
 
         if($request -> has('name')){
             $categories -> name = $request -> name;
+            $updatedFields['name'] = $request->name;
         }
         $categories -> save();
 
         $data = [
             'message' => 'Categoria actualizada',
-            'restaurants' => $categories,
+            'data' => $updatedFields,
             'status' => RESPONSE::HTTP_OK
         ];
         return response() -> json($data,RESPONSE::HTTP_OK);

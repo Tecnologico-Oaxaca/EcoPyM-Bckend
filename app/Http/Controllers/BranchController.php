@@ -363,18 +363,22 @@ class BranchController extends Controller
             ];
             return response() -> json($data,Response::HTTP_BAD_REQUEST);
         }
-
+        $updatedFields = [];
         if($request -> has('image')){
             $branches -> image = $request -> image;
+            $updatedFields['image'] = $request->image;
         }
         if($request -> has('open_time')){
             $branches -> open_time = $request -> open_time;
+            $updatedFields['open_time'] = $request->open_time;
         }
         if($request -> has('close_time')){
             $branches -> close_time = $request -> close_time;
+            $updatedFields['close_time'] = $request->close_time;
         }
         if($request -> has('phone')){
             $branches -> phone = $request -> phone;
+            $updatedFields['phone'] = $request->phone;
         }
         if ($request->has(['state', 'city', 'district', 'street', 'number'])) {
             $branches->state = $request->state;
@@ -382,15 +386,22 @@ class BranchController extends Controller
             $branches->district = $request->district;
             $branches->street = $request->street;
             $branches->number = $request->number;
+
+            $updatedFields['state'] = $request->state;
+            $updatedFields['city'] = $request->city;
+            $updatedFields['district'] = $request->district;
+            $updatedFields['street'] = $request->street;
+            $updatedFields['number'] = $request->number;
         }
         if($request -> has('mipyme_id')){
             $branches -> mipyme_id = $request -> mipyme_id;
+            $updatedFields['mipyme_id'] = $request->mipyme_id;
         }
         $branches -> save();
 
         $data = [
             'message' => 'Sucursal actualizada',
-            'data' => $branches->load('mipyme'),
+            'data' => $updatedFields,
             'status' => RESPONSE::HTTP_OK
         ];
         return response() -> json($data,RESPONSE::HTTP_OK);

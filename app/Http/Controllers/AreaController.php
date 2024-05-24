@@ -216,15 +216,17 @@ class AreaController extends Controller
             ];
             return response() -> json($data,Response::HTTP_BAD_REQUEST);
         }
+        $updatedFields = [];
 
         if($request -> has('name')){
             $areas -> name = $request -> name;
+            $updatedFields['name'] = $request->name;
         }
         $areas -> save();
 
         $data = [
-            'message' => 'MIPyME actualizada',
-            'restaurants' => $areas,
+            'message' => 'Area actualizada',
+            'data' => $updatedFields,
             'status' => RESPONSE::HTTP_OK
         ];
         return response() -> json($data,RESPONSE::HTTP_OK);
