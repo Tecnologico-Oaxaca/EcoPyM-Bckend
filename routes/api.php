@@ -10,6 +10,7 @@ use App\Http\Controllers\ContractController;
 use App\Http\Controllers\DayController;
 use App\Http\Controllers\MipymeController;
 use App\Http\Controllers\RegisterBusinesController;
+use App\Http\Controllers\RegisterEmployeeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkShiftController;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/registerBusines', [RegisterBusinesController::class, 'store']);
+Route::post('/registerEmployee', [RegisterEmployeeController::class, 'store']);
 
 Route::middleware('auth:sanctum')->group(function() {
     Route::get('/profile', [AuthController::class, 'profile']);
