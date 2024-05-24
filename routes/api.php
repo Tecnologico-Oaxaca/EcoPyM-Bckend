@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\BusineController;
 use App\Http\Controllers\CashOpeningController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContractController;
@@ -116,3 +117,10 @@ Route::post('/providers',[ProviderController::class, 'store']);
 Route::put('/providers/{id}',[ProviderController::class, 'update']);
 Route::patch('/providers/{id}',[ProviderController::class, 'updatePartial']);
 Route::delete('/providers/{id}',[ProviderController::class, 'destroy']);
+
+Route::get('/categories',[CategoryController::class, 'index']);
+Route::get('/categories/{id}',[CategoryController::class, 'show']);
+Route::post('/categories',[CategoryController::class, 'store']);
+Route::put('/categories/{id}',[CategoryController::class, 'update']);
+Route::patch('/categories/{id}',[CategoryController::class, 'updatePartial']);
+Route::delete('/categories/{id}',[CategoryController::class, 'destroy']);
