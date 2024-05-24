@@ -6,6 +6,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\BusineController;
 use App\Http\Controllers\CashOpeningController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\DayController;
 use App\Http\Controllers\MipymeController;
@@ -100,3 +101,10 @@ Route::delete('/contracts/{id}',[ContractController::class, 'destroy']);
 
 Route::get('/cashOpenings',[CashOpeningController::class, 'index']);
 Route::post('/cashOpenings',[CashOpeningController::class, 'store']);
+
+Route::get('/companies',[CompanyController::class, 'index']);
+Route::get('/companies/{id}',[CompanyController::class, 'show']);
+Route::post('/companies',[CompanyController::class, 'store']);
+Route::put('/companies/{id}',[CompanyController::class, 'update']);
+Route::patch('/companies/{id}',[CompanyController::class, 'updatePartial']);
+Route::delete('/companies/{id}',[CompanyController::class, 'destroy']);
