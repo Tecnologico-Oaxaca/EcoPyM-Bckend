@@ -28,7 +28,7 @@ class ProviderController extends Controller
 
             $data = [
                 'message' => 'Proveedores encontrados',
-                'data' => $providers,
+                'data' => $providers->load(['companies']),
                 'status' => Response::HTTP_OK,
             ];
             return response()->json($data, Response::HTTP_OK);
@@ -59,6 +59,12 @@ class ProviderController extends Controller
                 'required','digits:10','numeric',
                 Rule::unique('providers', 'phone')
             ],
+            'company_ids' => [
+                'required', 'array'
+            ],
+            'company_ids.*' => [
+                'exists:companies,id'
+            ]
         ], [
             'name.required' => 'El nombre es requerido',
             'name.string' => 'El nombre debe ser un texto',
@@ -68,6 +74,9 @@ class ProviderController extends Controller
             'phone.digits' => 'El teléfono debe tener 10 dígitos',
             'phone.numeric' => 'El teléfono debe ser numérico',
             'phone.unique' => 'El teléfono ya existe',
+            'company_ids.required' => 'Las empresas son requeridas',
+            'company_ids.array' => 'Las empresas deben ser un array',
+            'company_ids.*.exists' => 'Una de las empresas no existen'
         ]);
     
         if ($validator->fails()) {
@@ -90,9 +99,10 @@ class ProviderController extends Controller
                 ];
                 return response()->json($data, Response::HTTP_INTERNAL_SERVER_ERROR);
             }
+            $providers->companies()->sync($request->company_ids);
             $data = [
                 'message' => 'Proveedor creado',
-                'data' => $providers,
+                'data' => $providers->load(['companies']),
                 'status' => Response::HTTP_CREATED,
             ];
             return response()->json($data, Response::HTTP_CREATED);
@@ -123,7 +133,7 @@ class ProviderController extends Controller
 
         $data = [
             'message' => 'Proveedor encontrado',
-            'data' => $providers,
+            'data' => $providers->load(['companies']),
             'status' => Response::HTTP_OK,
         ];
         return response() -> json($data,Response::HTTP_OK);
@@ -154,6 +164,12 @@ class ProviderController extends Controller
                 'required','digits:10','numeric',
                 Rule::unique('providers', 'phone')->ignore($providers->id)
             ],
+            'company_ids' => [
+                'required', 'array'
+            ],
+            'company_ids.*' => [
+                'exists:companies,id'
+            ]
         ], [
             'name.required' => 'El nombre es requerido',
             'name.string' => 'El nombre debe ser un texto',
@@ -163,6 +179,9 @@ class ProviderController extends Controller
             'phone.digits' => 'El teléfono debe tener 10 dígitos',
             'phone.numeric' => 'El teléfono debe ser numérico',
             'phone.unique' => 'El teléfono ya existe',
+            'company_ids.required' => 'Las empresas son requeridas',
+            'company_ids.array' => 'Las empresas deben ser un array',
+            'company_ids.*.exists' => 'Una de las empresas no existen',
         ]);
 
         if($validator ->fails()){
@@ -175,9 +194,10 @@ class ProviderController extends Controller
             return response() -> json($data,Response::HTTP_BAD_REQUEST);
         }
         $providers->update($validator->validated());
+        $providers->companies()->sync($request->company_ids);
         $data = [
             'message' => 'Proveedor actualizado',
-            'data' => $providers,
+            'data' => $providers->load(['companies']),
             'status' => Response::HTTP_OK,
         ];
         return response() -> json($data,Response::HTTP_OK);
@@ -230,6 +250,10 @@ class ProviderController extends Controller
                 'digits:10','numeric',
                 Rule::unique('providers', 'phone')->ignore($providers->id)
             ],
+            'company_ids' => [
+                'sometimes', 'array','min:1',
+                'exists:companies,id'
+            ],
         ], [
             'name.string' => 'El nombre debe ser un texto',
             'name.max' => 'El nombre debe tener un máximo de 50 caracteres',
@@ -237,6 +261,9 @@ class ProviderController extends Controller
             'phone.digits' => 'El teléfono debe tener 10 dígitos',
             'phone.numeric' => 'El teléfono debe ser numérico',
             'phone.unique' => 'El teléfono ya existe',
+            'company_ids.array' => 'La lista de empresas debe ser un array',
+            'company_ids.min' => 'La lista de empresas debe tener al menos un elemento',
+            'company_ids.exists' => 'Una de las empresas no existe',
         ]);
 
         if($validator ->fails()){
@@ -258,11 +285,14 @@ class ProviderController extends Controller
         if($request -> has('phone')){
             $providers -> phone = $request -> phone;
         }
+        if($request -> has('company_ids')){
+            $providers->companies()->sync($request->company_ids);
+        }
         $providers -> save();
 
         $data = [
             'message' => 'Proveedor actualizado',
-            'data' => $providers,
+            'data' => $providers->load(['companies']),
             'status' => RESPONSE::HTTP_OK
         ];
         return response() -> json($data,RESPONSE::HTTP_OK);
