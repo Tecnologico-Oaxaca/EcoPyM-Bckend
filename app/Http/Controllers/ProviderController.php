@@ -275,24 +275,29 @@ class ProviderController extends Controller
             ];
             return response() -> json($data,Response::HTTP_BAD_REQUEST);
         }
+        $updatedFields = [];
 
         if($request -> has('name')){
             $providers -> name = $request -> name;
+            $updatedFields['name'] = $request->name;
         }
         if($request -> has('image')){
             $providers -> image = $request -> image;
+            $updatedFields['image'] = $request->image;
         }
         if($request -> has('phone')){
             $providers -> phone = $request -> phone;
+            $updatedFields['phone'] = $request->phone;
         }
         if($request -> has('company_ids')){
             $providers->companies()->sync($request->company_ids);
+            $updatedFields['company_ids'] = $request->company_ids;
         }
         $providers -> save();
 
         $data = [
             'message' => 'Proveedor actualizado',
-            'data' => $providers->load(['companies']),
+            'data' => $updatedFields,
             'status' => RESPONSE::HTTP_OK
         ];
         return response() -> json($data,RESPONSE::HTTP_OK);

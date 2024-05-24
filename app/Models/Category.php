@@ -17,6 +17,10 @@ class Category extends Model
     protected $fillable = [
         'name',
     ];
+    public function departments()
+    {
+        return $this->belongsToMany(Department::class, 'category_department');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
