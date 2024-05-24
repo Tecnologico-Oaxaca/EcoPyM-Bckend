@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\WorkShift;
+use App\Models\Provider;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Validator;
 
-class WorkShiftController extends Controller
+class ProviderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index() {
         try {
-            $workshifts = WorkShift::all();
+            $providers = Provider::all();
     
-            if ($workshifts->isEmpty()) {
+            if ($providers->isEmpty()) {
                 $data = [
-                    'message' => 'Turnos inexistentes',
+                    'message' => 'Proveedores inexistentes',
                     'data' => null,
                     'status' => Response::HTTP_NOT_FOUND,
                 ];
@@ -27,15 +27,15 @@ class WorkShiftController extends Controller
             }
 
             $data = [
-                'message' => 'Turnos encontrados',
-                'data' => $workshifts,
+                'message' => 'Proveedores encontrados',
+                'data' => $providers,
                 'status' => Response::HTTP_OK,
             ];
             return response()->json($data, Response::HTTP_OK);
     
         } catch (\Exception $e) {
             $data = [
-                'message' => 'Error al obtener los turnos',
+                'message' => 'Error al obtener los proveedores',
                 'data' => null,
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
             ];
@@ -50,13 +50,24 @@ class WorkShiftController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => [
                 'required','string','max:50',
-                Rule::unique('work_shifts', 'name') 
+                Rule::unique('providers', 'name') 
+            ],
+            'image' => [
+                'nullable',
+            ],
+            'phone' => [
+                'required','digits:10','numeric',
+                Rule::unique('providers', 'phone')
             ],
         ], [
-            'name.required' => 'El turno es obligatorio',
-            'name.string' => 'El turno debe ser una cadena de texto.',
-            'name.max' => 'El turno no puede ser mayor a 50 caracteres.',
-            'name.unique' => 'El turno ya existe.', 
+            'name.required' => 'El nombre es requerido',
+            'name.string' => 'El nombre debe ser un texto',
+            'name.max' => 'El nombre debe tener un máximo de 50 caracteres',
+            'name.unique' => 'El nombre ya existe',
+            'phone.required' => 'El teléfono es requerido',
+            'phone.digits' => 'El teléfono debe tener 10 dígitos',
+            'phone.numeric' => 'El teléfono debe ser numérico',
+            'phone.unique' => 'El teléfono ya existe',
         ]);
     
         if ($validator->fails()) {
@@ -69,10 +80,10 @@ class WorkShiftController extends Controller
             return response()->json($data, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         try {
-            $workshifts = WorkShift::create($validator->validated());
-            if (!$workshifts) {
+            $providers = Provider::create($validator->validated());
+            if (!$providers) {
                 $data = [
-                    'message' => 'Error al crear el turno',
+                    'message' => 'Error al crear el proveedor',
                     'errors' => $validator->errors(),
                     'data' => null,
                     'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
@@ -80,14 +91,14 @@ class WorkShiftController extends Controller
                 return response()->json($data, Response::HTTP_INTERNAL_SERVER_ERROR);
             }
             $data = [
-                'message' => 'Area creada',
-                'data' => $workshifts,
+                'message' => 'Proveedor creado',
+                'data' => $providers,
                 'status' => Response::HTTP_CREATED,
             ];
             return response()->json($data, Response::HTTP_CREATED);
         } catch (\Exception $e) {
             $data = [
-                'message' => 'Error al crear el turno',
+                'message' => 'Error al crear el proveedor',
                 'data' => null,
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
             ];
@@ -99,11 +110,11 @@ class WorkShiftController extends Controller
      * Display the specified resource.
      */
     public function show($id){
-        $workshifts = WorkShift::find($id);
+        $providers = Provider::find($id);
 
-        if(!$workshifts){
+        if(!$providers){
             $data = [
-                'message' => 'Turno no encontrado',
+                'message' => 'Proveedor no encontrado',
                 'data' => null,
                 'status' => Response::HTTP_NOT_FOUND 
             ];
@@ -111,8 +122,8 @@ class WorkShiftController extends Controller
         }
 
         $data = [
-            'message' => 'Turno encontrado',
-            'data' => $workshifts,
+            'message' => 'Proveedor encontrado',
+            'data' => $providers,
             'status' => Response::HTTP_OK,
         ];
         return response() -> json($data,Response::HTTP_OK);
@@ -122,10 +133,10 @@ class WorkShiftController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id){
-        $workshifts = WorkShift::find($id);
-        if(!$workshifts){
+        $providers = Provider::find($id);
+        if(!$providers){
             $data = [
-                'message' => 'Turno no encontrado',
+                'message' => 'Proveedor no encontrado',
                 'data' => null,
                 'status' => Response::HTTP_NOT_FOUND,
             ];
@@ -133,14 +144,25 @@ class WorkShiftController extends Controller
         }
         $validator = Validator::make($request->all(), [
             'name' => [
-                'required','string','max:30',
-                Rule::unique('work_shifts', 'name')->ignore($workshifts->id)
+                'required','string','max:50',
+                Rule::unique('providers', 'name')->ignore($providers->id)
+            ],
+            'image' => [
+                'nullable',
+            ],
+            'phone' => [
+                'required','digits:10','numeric',
+                Rule::unique('providers', 'phone')->ignore($providers->id)
             ],
         ], [
-            'name.required' => 'El turno es obligatorio',
-            'name.string' => 'El turno debe ser una cadena de texto.',
-            'name.max' => 'El turno no puede ser mayor a 50 caracteres.',
-            'name.unique' => 'El turno ya existe.', 
+            'name.required' => 'El nombre es requerido',
+            'name.string' => 'El nombre debe ser un texto',
+            'name.max' => 'El nombre debe tener un máximo de 50 caracteres',
+            'name.unique' => 'El nombre ya existe',
+            'phone.required' => 'El teléfono es requerido',
+            'phone.digits' => 'El teléfono debe tener 10 dígitos',
+            'phone.numeric' => 'El teléfono debe ser numérico',
+            'phone.unique' => 'El teléfono ya existe',
         ]);
 
         if($validator ->fails()){
@@ -152,10 +174,10 @@ class WorkShiftController extends Controller
             ];
             return response() -> json($data,Response::HTTP_BAD_REQUEST);
         }
-        $workshifts->update($validator->validated());
+        $providers->update($validator->validated());
         $data = [
-            'message' => 'Turno actualizado',
-            'data' => $workshifts,
+            'message' => 'Proveedor actualizado',
+            'data' => $providers,
             'status' => Response::HTTP_OK,
         ];
         return response() -> json($data,Response::HTTP_OK);
@@ -165,31 +187,31 @@ class WorkShiftController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy($id){
-        $workshifts = WorkShift::find($id);
-        if(!$workshifts){
+        $providers = Provider::find($id);
+        if(!$providers){
             $data = [
-                'message' => 'Tunro no encontrado',
+                'message' => 'Proveedor no encontrado',
                 'data' => null,
                 'status' => Response::HTTP_NOT_FOUND,
             ];
             return response() -> json($data,Response::HTTP_NOT_FOUND);
         }
 
-        $workshifts -> delete();
+        $providers -> delete();
 
         $data = [
-            'message' => 'Turno eliminado',
-            'data' => $workshifts,
+            'message' => 'Proveedor eliminado',
+            'data' => $providers,
             'status' => Response::HTTP_OK
         ];
         return response() -> json($data,Response::HTTP_OK);
     }
 
     public function updatePartial(Request $request, $id){
-        $workshifts = WorkShift::find($id);
-        if(!$workshifts){
+        $providers = Provider::find($id);
+        if(!$providers){
             $data = [
-                'message' => 'Turno no encontrado',
+                'message' => 'Proveedor no encontrado',
                 'data' => null,
                 'status' => Response::HTTP_NOT_FOUND
             ];
@@ -198,13 +220,23 @@ class WorkShiftController extends Controller
 
         $validator = Validator::make($request->all(), [
             'name' => [
-                'string','max:30',Rule::unique('work_shifts', 'name')->ignore($workshifts->id) 
+                'string','max:50',
+                Rule::unique('providers', 'name')->ignore($providers->id)
             ],
-
+            'image' => [
+                'sometimes',
+            ],
+            'phone' => [
+                'digits:10','numeric',
+                Rule::unique('providers', 'phone')->ignore($providers->id)
+            ],
         ], [
-            'name.string' => 'El nombre debe ser una cadena de texto.',
-            'name.max' => 'El nombre no puede ser mayor a 50 caracteres.',
-            'name.unique' => 'El nombre ya existe.',
+            'name.string' => 'El nombre debe ser un texto',
+            'name.max' => 'El nombre debe tener un máximo de 50 caracteres',
+            'name.unique' => 'El nombre ya existe',
+            'phone.digits' => 'El teléfono debe tener 10 dígitos',
+            'phone.numeric' => 'El teléfono debe ser numérico',
+            'phone.unique' => 'El teléfono ya existe',
         ]);
 
         if($validator ->fails()){
@@ -218,13 +250,19 @@ class WorkShiftController extends Controller
         }
 
         if($request -> has('name')){
-            $workshifts -> name = $request -> name;
+            $providers -> name = $request -> name;
         }
-        $workshifts -> save();
+        if($request -> has('image')){
+            $providers -> image = $request -> image;
+        }
+        if($request -> has('phone')){
+            $providers -> phone = $request -> phone;
+        }
+        $providers -> save();
 
         $data = [
-            'message' => 'Turno actualizado',
-            'data' => $workshifts,
+            'message' => 'Proveedor actualizado',
+            'data' => $providers,
             'status' => RESPONSE::HTTP_OK
         ];
         return response() -> json($data,RESPONSE::HTTP_OK);

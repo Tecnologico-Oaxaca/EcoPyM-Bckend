@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Company extends Model
+class Provider extends Model
 {
     use HasFactory;
 
@@ -16,12 +16,15 @@ class Company extends Model
      */
     protected $fillable = [
         'name',
-    ];
-    public function providers()
-    {
-        return $this->belongsToMany(Provider::class);
-    }
+        'image',
+        'phone',
 
+    ];
+
+    public function companies()
+    {
+        return $this->belongsToMany(Company::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
