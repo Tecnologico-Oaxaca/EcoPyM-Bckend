@@ -53,7 +53,7 @@ class MipymeController extends Controller{
                 'required','string','max:50',Rule::unique('mipymes', 'name') 
             ],
             'email' => [
-                'nulleable','string','max:50','email',Rule::unique('mipymes', 'email') 
+                'nullable','string','max:50','email',Rule::unique('mipymes', 'email') 
             ],
             'image' => [
                 'nullable',
@@ -286,23 +286,30 @@ class MipymeController extends Controller{
             return response() -> json($data,Response::HTTP_BAD_REQUEST);
         }
 
+        $updatedFields = [];
+
         if($request -> has('name')){
             $mipymes -> name = $request -> name;
+            $updatedFields['name'] = $request->name;
         }
         if($request -> has('email')){
             $mipymes -> email = $request -> email;
+            $updatedFields['email'] = $request->email;
         }
         if($request -> has('image')){
             $mipymes -> image = $request -> image;
+            $updatedFields['image'] = $request->image;
+
         }
         if ($request->has('business_ids')) {
             $mipymes->businesses()->sync($request->business_ids);
+            $updatedFields['business_id']=$request->business_id;
         }
         $mipymes -> save();
 
         $data = [
             'message' => 'MIPyME actualizada',
-            'data' => $mipymes->load(['businesses','branches']),
+            'data' => $updatedFields,
             'status' => RESPONSE::HTTP_OK
         ];
         return response() -> json($data,RESPONSE::HTTP_OK);

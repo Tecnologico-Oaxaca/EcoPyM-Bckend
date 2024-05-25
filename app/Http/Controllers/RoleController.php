@@ -252,14 +252,17 @@ class RoleController extends Controller
             return response() -> json($data,Response::HTTP_BAD_REQUEST);
         }
 
+        $updatedFields = [];
+
         if($request -> has('name')){
             $roles -> name = $request -> name;
+            $updatedFields['name'] = $request->name;
         }
         $roles -> save();
 
         $data = [
             'message' => 'Rol actualizado',
-            'data' => $roles->load(['areas']),
+            'data' => $updatedFields,
             'status' => RESPONSE::HTTP_OK
         ];
         return response() -> json($data,RESPONSE::HTTP_OK);

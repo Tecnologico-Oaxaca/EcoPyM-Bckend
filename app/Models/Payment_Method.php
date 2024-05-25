@@ -17,6 +17,10 @@ class Payment_Method extends Model
     protected $fillable = [
         'type',
     ];
+    public function sales()
+    {
+        return $this->belongsToMany(Sale::class, 'payment_method_sale');
+    }
     
     /**
      * The attributes that should be hidden for serialization.

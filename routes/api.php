@@ -19,6 +19,7 @@ use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\RegisterBusinesController;
 use App\Http\Controllers\RegisterEmployeeController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UnitQuantityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkShiftController;
@@ -167,3 +168,6 @@ Route::post('/paymet',[PaymentMethodController::class, 'store']);
 Route::put('/paymet/{id}',[PaymentMethodController::class, 'update']);
 Route::patch('/paymet/{id}',[PaymentMethodController::class, 'updatePartial']);
 Route::delete('/paymet/{id}',[PaymentMethodController::class, 'destroy']);
+
+Route::get('/sales',[SaleController::class, 'index']);
+Route::post('/sales',[SaleController::class, 'store']);

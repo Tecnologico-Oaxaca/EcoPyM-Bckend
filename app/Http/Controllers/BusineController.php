@@ -228,14 +228,17 @@ class BusineController extends Controller{
             return response() -> json($data,Response::HTTP_BAD_REQUEST);
         }
 
+        $updatedFields = [];
+
         if($request -> has('type')){
             $business -> type = $request -> type;
+            $updatedFields['type'] = $request->type;
         }
         $business -> save();
 
         $data = [
             'message' => 'Giro comercial actualizado',
-            'data' => $business,
+            'data' => $updatedFields,
             'status' => RESPONSE::HTTP_OK
         ];
         return response() -> json($data,RESPONSE::HTTP_OK);

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      */
@@ -109,8 +110,10 @@ class UserController extends Controller
         try {
             DB::beginTransaction();
             $users = User::create($validator->validated());
+            
             $role = Role::findById($request->input('role_id'));
             $users->assignRole($role->name);
+            
             $mipyme = Mipyme::find($request->input('mipyme_id'));
 
         if ($mipyme) {
