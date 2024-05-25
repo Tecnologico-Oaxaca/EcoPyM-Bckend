@@ -14,6 +14,7 @@ use App\Http\Controllers\ContractController;
 use App\Http\Controllers\DayController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\MipymeController;
+use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\RegisterBusinesController;
 use App\Http\Controllers\RegisterEmployeeController;
@@ -159,3 +160,10 @@ Route::post('/brands',[BrandController::class, 'store']);
 Route::put('/brands/{id}',[BrandController::class, 'update']);
 Route::patch('/brands/{id}',[BrandController::class, 'updatePartial']);
 Route::delete('/brands/{id}',[BrandController::class, 'destroy']);
+
+Route::get('/paymet',[PaymentMethodController::class, 'index']);
+Route::get('/paymet/{id}',[PaymentMethodController::class, 'show']);
+Route::post('/paymet',[PaymentMethodController::class, 'store']);
+Route::put('/paymet/{id}',[PaymentMethodController::class, 'update']);
+Route::patch('/paymet/{id}',[PaymentMethodController::class, 'updatePartial']);
+Route::delete('/paymet/{id}',[PaymentMethodController::class, 'destroy']);
