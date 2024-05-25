@@ -25,7 +25,8 @@ class User extends Authenticatable
         'email',
         'password',
         'image',
-        'branch_id'
+        'branch_id',
+        'rol_id'
     ];
 
     public function branch() {
@@ -45,6 +46,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Assist::class);  
     }
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -54,6 +59,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'creted_at',
+        'updated_at',
     ];
 
     /**

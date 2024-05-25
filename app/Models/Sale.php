@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Area extends Model
+class Sale extends Model
 {
     use HasFactory;
 
@@ -15,11 +16,19 @@ class Area extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'date',
+        'time',
+        'total_sale',
+        'discount',
+        'user_id',
     ];
-
-    public function roles(){
-        return $this->belongsToMany(Role::class, 'area_role', 'area_id', 'role_id');
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function paymentMethods()
+    {
+        return $this->belongsToMany(Payment_Method::class, 'payment_method_sale');
     }
     
     /**
@@ -28,8 +37,7 @@ class Area extends Model
      * @var array<int, string>
      */
     protected $hidden = [
-        'created_at',
-        'updated_at'
+
     ];
 
     /**
@@ -43,4 +51,12 @@ class Area extends Model
             
         ];
     }
+    protected static function booted()
+    {
+        static::creating(function ($cashOpening) {
+            $cashOpening->date = Carbon::now()->format('Y-m-d');
+            $cashOpening->time = Carbon::now()->format('H:i');
+        });
+    }
+    
 }

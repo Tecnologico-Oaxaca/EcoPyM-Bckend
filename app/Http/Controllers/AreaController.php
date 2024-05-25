@@ -216,6 +216,7 @@ class AreaController extends Controller
             ];
             return response() -> json($data,Response::HTTP_BAD_REQUEST);
         }
+        
         $updatedFields = [];
 
         if($request -> has('name')){

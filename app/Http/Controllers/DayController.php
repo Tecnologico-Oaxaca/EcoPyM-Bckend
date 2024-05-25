@@ -215,15 +215,16 @@ class DayController extends Controller
             ];
             return response() -> json($data,Response::HTTP_BAD_REQUEST);
         }
-
+        $updatedFields = [];
         if($request -> has('name')){
             $days -> name = $request -> name;
+            $updatedFields['name'] = $request->name;
         }
         $days -> save();
 
         $data = [
             'message' => 'Dia actualizado',
-            'restaurants' => $days,
+            'restaurants' => $updatedFields,
             'status' => RESPONSE::HTTP_OK
         ];
         return response() -> json($data,RESPONSE::HTTP_OK);

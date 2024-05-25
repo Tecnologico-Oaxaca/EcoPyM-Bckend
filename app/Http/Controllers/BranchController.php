@@ -364,6 +364,7 @@ class BranchController extends Controller
             return response() -> json($data,Response::HTTP_BAD_REQUEST);
         }
         $updatedFields = [];
+        
         if($request -> has('image')){
             $branches -> image = $request -> image;
             $updatedFields['image'] = $request->image;
