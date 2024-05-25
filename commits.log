@@ -1,3 +1,24 @@
+commit db7f13d95aad6a1729fa25729cc064367d5a19dc
+Merge: 1227fe0 4c8e7e0
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Sat May 25 12:46:34 2024 -0600
+
+    Merge pull request #44 from SoyFroylanMtz/cambios
+    
+    Desarrollo api Bands
+
+commit 4c8e7e00738c40d27a9e573b08f86355e25139f5
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Sat May 25 12:44:35 2024 -0600
+
+    Desarrollo api Bands
+
+commit 1227fe052e4661a430051667778abbaa3a7aabff
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Fri May 24 09:18:01 2024 -0600
+
+    Actualizando log commits
+
 commit eb5ff400d962f0fdab80bbc85e733ff41ce3c4a3
 Merge: 2745c00 dd9d5f9
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
