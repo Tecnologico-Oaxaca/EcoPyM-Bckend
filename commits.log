@@ -1,3 +1,24 @@
+commit b5699a795d74e628c201717ff8ef6f25fc02bb82
+Merge: fd55210 e8b736c
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Sat May 25 13:59:01 2024 -0600
+
+    Merge pull request #45 from SoyFroylanMtz/rama-nueva
+    
+    Desarrollo Api Metho_Payments
+
+commit e8b736c1df9af3dd753fe6f9ee25f262d82ede7c
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Sat May 25 13:57:51 2024 -0600
+
+    Desarrollo Api Metho_Payments
+
+commit fd55210b1521c2d96dd83c5e063e7d961b39d26c
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Sat May 25 12:48:50 2024 -0600
+
+    Actualizando log commits
+
 commit db7f13d95aad6a1729fa25729cc064367d5a19dc
 Merge: 1227fe0 4c8e7e0
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
