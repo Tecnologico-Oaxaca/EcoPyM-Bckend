@@ -3,6 +3,7 @@
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\BusineController;
 use App\Http\Controllers\CashOpeningController;
 use App\Http\Controllers\CategoryController;
@@ -151,3 +152,10 @@ Route::post('/clasification',[ClasificationController::class, 'store']);
 Route::put('/clasification/{id}',[ClasificationController::class, 'update']);
 Route::patch('/clasification/{id}',[ClasificationController::class, 'updatePartial']);
 Route::delete('/clasification/{id}',[ClasificationController::class, 'destroy']);
+
+Route::get('/brands',[BrandController::class, 'index']);
+Route::get('/brands/{id}',[BrandController::class, 'show']);
+Route::post('/brands',[BrandController::class, 'store']);
+Route::put('/brands/{id}',[BrandController::class, 'update']);
+Route::patch('/brands/{id}',[BrandController::class, 'updatePartial']);
+Route::delete('/brands/{id}',[BrandController::class, 'destroy']);
