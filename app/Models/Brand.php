@@ -17,6 +17,11 @@ class Brand extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'brand_id');
+    }
     
     /**
      * The attributes that should be hidden for serialization.

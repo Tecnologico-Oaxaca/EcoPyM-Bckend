@@ -18,6 +18,11 @@ class UnitQuantity extends Model
         'name',
         'abbreviation'
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'unit_quantity_id');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

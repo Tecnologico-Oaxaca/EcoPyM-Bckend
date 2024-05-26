@@ -21,6 +21,10 @@ class Busine extends Model
     {
         return $this->belongsToMany(Mipyme::class, 'mipyme_business', 'business_id', 'mipyme_id');
     }
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'business_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
