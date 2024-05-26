@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SaleDetail extends Model
+class ExpenseType extends Model
 {
     use HasFactory;
 
@@ -15,22 +15,8 @@ class SaleDetail extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'price_buy',
-        'price_sale',
-        'quantity',
-        'discount',
-        'sale_id',
-        'product_id',
+        'type',
     ];
-
-    public function sale()
-    {
-        return $this->belongsTo(Sale::class, 'sale_id', 'id');
-    }
-    public function product()
-    {
-        return $this->belongsTo(Product::class, 'product_id', 'id');
-    }
     
     /**
      * The attributes that should be hidden for serialization.
@@ -39,7 +25,7 @@ class SaleDetail extends Model
      */
     protected $hidden = [
         'created_at',
-        'updated_at',
+        'updated_at'
     ];
 
     /**
