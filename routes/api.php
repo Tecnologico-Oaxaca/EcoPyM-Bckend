@@ -13,6 +13,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\DayController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\ExpenseTypeController;
 use App\Http\Controllers\MipymeController;
 use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\ProductController;
@@ -190,3 +191,10 @@ Route::post('/detailSale',[SaleDetailController::class, 'store']);
 Route::put('/detailSale/{id}',[SaleDetailController::class, 'update']);
 Route::patch('/detailSale/{id}',[SaleDetailController::class, 'updatePartial']);
 Route::delete('/detailSale/{id}',[SaleDetailController::class, 'destroy']);
+
+Route::get('/expense',[ExpenseTypeController::class, 'index']);
+Route::get('/expense/{id}',[ExpenseTypeController::class, 'show']);
+Route::post('/expense',[ExpenseTypeController::class, 'store']);
+Route::put('/expense/{id}',[ExpenseTypeController::class, 'update']);
+Route::patch('/expense/{id}',[ExpenseTypeController::class, 'updatePartial']);
+Route::delete('/expense/{id}',[ExpenseTypeController::class, 'destroy']);

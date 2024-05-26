@@ -53,6 +53,10 @@ class Product extends Model
     {
         return $this->belongsTo(Brand::class, 'brand_id');
     }
+    public function saleDetails()
+    {
+        return $this->hasMany(SaleDetail::class, 'product_id', 'id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
