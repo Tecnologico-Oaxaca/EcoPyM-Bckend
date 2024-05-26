@@ -23,6 +23,7 @@ use App\Http\Controllers\RegisterEmployeeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SaleDetailController;
+use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\UnitQuantityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkShiftController;
@@ -198,3 +199,8 @@ Route::post('/expense',[ExpenseTypeController::class, 'store']);
 Route::put('/expense/{id}',[ExpenseTypeController::class, 'update']);
 Route::patch('/expense/{id}',[ExpenseTypeController::class, 'updatePartial']);
 Route::delete('/expense/{id}',[ExpenseTypeController::class, 'destroy']);
+
+Route::get('/sugestion',[SuggestionController::class, 'index']);
+Route::get('/sugestion/{id}',[SuggestionController::class, 'show']);
+Route::post('/sugestion',[SuggestionController::class, 'store']);
+Route::delete('/sugestion/{id}',[SuggestionController::class, 'destroy']);
