@@ -1,3 +1,24 @@
+commit cfd3d70236962c2a35d714b70591bf8964d88070
+Merge: e96152b 1c7e98a
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Sun May 26 01:21:44 2024 -0600
+
+    Merge pull request #48 from SoyFroylanMtz/rama-nueva
+    
+    Desarrollo Api VerifyCode
+
+commit 1c7e98a2a93437eb7fb512c2b96dfc3d851162f0
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Sun May 26 01:20:48 2024 -0600
+
+    Desarrollo Api VerifyCode
+
+commit e96152b65622b3824722ec0ea5b72122e1b70d96
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Sat May 25 19:03:29 2024 -0600
+
+    Actualizando log commits
+
 commit 0c5e0385fe751df03fb762b0f94da5a766266d92
 Merge: 97f07a5 9e253ed
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
