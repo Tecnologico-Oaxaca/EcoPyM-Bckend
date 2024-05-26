@@ -106,7 +106,7 @@ class SaleController extends Controller
             return response()->json($data, Response::HTTP_CREATED);
         } catch (\Exception $e) {
             $data = [
-                'message' => 'Error al crear la venta' . $e->getMessage(),
+                'message' => 'Error al crear la venta' ,
                 'data' => null,
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
             ];
