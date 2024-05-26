@@ -7,6 +7,7 @@ use App\Models\Mipyme;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Validator;
@@ -337,10 +338,10 @@ class UserController extends Controller
             'role_id.exists' => 'El ID del rol no es válido.',
         ]);
 
-        if($validator ->fails()){
+        if($validator->fails()){
             $data = [
                 'message' => 'Error en la validación de los datos',
-                'error' => $validator -> errors(),
+                'errors' => $validator->errors(),
                 'data' => null,
                 'status' => Response::HTTP_BAD_REQUEST
             ];
@@ -391,4 +392,39 @@ class UserController extends Controller
         ];
         return response() -> json($data,RESPONSE::HTTP_OK);
     }
+    
+    public function verifyCode(Request $request) {
+        $request->validate([
+            'code' => 'required|string'
+        ]);
+    
+        try {
+            $user = User::all()->firstWhere(function ($user) use ($request) {
+                return Hash::check($request->code, $user->password);
+            });
+    
+            if (!$user) {
+                return response()->json([
+                    'message' => 'Código inválido',
+                    'data' => null,
+                    'status' => Response::HTTP_UNAUTHORIZED
+                ], Response::HTTP_UNAUTHORIZED);
+            }
+    
+            return response()->json([
+                'message' => 'Código verificado correctamente',
+                'data' => $user,
+                'status' => Response::HTTP_OK
+            ], Response::HTTP_OK);
+    
+        } catch (\Exception $e) {
+            // Captura cualquier excepción que ocurra durante la verificación
+            return response()->json([
+                'message' => 'Error al verificar el código: ' . $e->getMessage(),
+                'data' => null,
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+    
 }
