@@ -35,7 +35,7 @@ class PaymentMethodController extends Controller
     
         } catch (\Exception $e) {
             $data = [
-                'message' => 'Error al obtener los tipos de pago',
+                'message' => 'Error al obtener los tipos de pago'. $e->getMessage(),
                 'data' => null,
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
             ];
@@ -50,7 +50,7 @@ class PaymentMethodController extends Controller
         $validator = Validator::make($request->all(), [
             'type' => [
                 'required','string','max:30',
-                Rule::unique('payment__methods', 'type') 
+                Rule::unique('payment_methods', 'type') 
             ],
         ], [
             'type.required' => 'El tipo de pago es obligatorio',
@@ -134,7 +134,7 @@ class PaymentMethodController extends Controller
         $validator = Validator::make($request->all(), [
             'type' => [
                 'required','string','max:30',
-                Rule::unique('payment__methods', 'type')->ignore($methods->id)
+                Rule::unique('payment_methods', 'type')->ignore($methods->id)
             ],
         ], [
             'type.required' => 'El tipo de pago es obligatorio',
@@ -198,7 +198,7 @@ class PaymentMethodController extends Controller
         $validator = Validator::make($request->all(), [
             'type' => [
                 'string','max:30',
-                Rule::unique('payment__methods', 'type')->ignore($methods->id) 
+                Rule::unique('payment_methods', 'type')->ignore($methods->id) 
             ],
 
         ], [

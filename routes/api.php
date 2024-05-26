@@ -23,9 +23,6 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UnitQuantityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkShiftController;
-use App\Models\Clasification;
-use App\Models\Department;
-use App\Models\UnitQuantity;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -170,4 +167,8 @@ Route::patch('/paymet/{id}',[PaymentMethodController::class, 'updatePartial']);
 Route::delete('/paymet/{id}',[PaymentMethodController::class, 'destroy']);
 
 Route::get('/sales',[SaleController::class, 'index']);
+Route::get('/sales/{id}',[SaleController::class, 'show']);
 Route::post('/sales',[SaleController::class, 'store']);
+Route::patch('/sales/{id}',[SaleController::class, 'updatePartial']);
+Route::put('/sales/{id}',[SaleController::class, 'update']);
+Route::delete('/sales/{id}',[SaleController::class, 'destroy']);

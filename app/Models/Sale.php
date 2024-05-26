@@ -28,8 +28,9 @@ class Sale extends Model
     }
     public function paymentMethods()
     {
-        return $this->belongsToMany(Payment_Method::class, 'payment_method_sale');
+        return $this->belongsToMany(Payment_Method::class, 'payment_method_sale', 'sale_id', 'payment_method_id');
     }
+
     
     /**
      * The attributes that should be hidden for serialization.
@@ -37,6 +38,8 @@ class Sale extends Model
      * @var array<int, string>
      */
     protected $hidden = [
+        'created_at',
+        'updated_at',
 
     ];
 
