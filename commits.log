@@ -1,3 +1,24 @@
+commit 3b8066daadfa4e94cef4fe7ca95e555e569c3b1f
+Merge: f12768c de86709
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Sun May 26 15:36:31 2024 -0600
+
+    Merge pull request #51 from SoyFroylanMtz/cambios
+    
+    Desarrollo Api ExpenseType
+
+commit de86709f6620bc680f88dfb6d9d16d356b3230e4
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Sun May 26 15:36:02 2024 -0600
+
+    Desarrollo Api ExpenseType
+
+commit f12768c226b702f64430a29fd8066e3dac5291e1
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Sun May 26 13:53:37 2024 -0600
+
+    Actualizando log commits
+
 commit 88d501b5f1748353a0946c373a3e07431c459419
 Merge: ca5c15c 158e287
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
