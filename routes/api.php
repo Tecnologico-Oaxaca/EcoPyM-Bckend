@@ -21,9 +21,11 @@ use App\Http\Controllers\RegisterBusinesController;
 use App\Http\Controllers\RegisterEmployeeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\SaleDetailController;
 use App\Http\Controllers\UnitQuantityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkShiftController;
+use App\Models\SaleDetail;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -180,3 +182,11 @@ Route::get('/products/{id}',[ProductController::class, 'show']);
 Route::post('/products',[ProductController::class, 'store']);
 Route::patch('/products/{id}',[ProductController::class, 'updatePartial']);
 Route::put('/products/{id}',[ProductController::class, 'update']);
+Route::delete('/products/{id}',[ProductController::class, 'destroy']);
+
+Route::get('/detailSale',[SaleDetailController::class, 'index']);
+Route::get('/detailSale/{id}',[SaleDetailController::class, 'show']);
+Route::post('/detailSale',[SaleDetailController::class, 'store']);
+Route::put('/detailSale/{id}',[SaleDetailController::class, 'update']);
+Route::patch('/detailSale/{id}',[SaleDetailController::class, 'updatePartial']);
+Route::delete('/detailSale/{id}',[SaleDetailController::class, 'destroy']);

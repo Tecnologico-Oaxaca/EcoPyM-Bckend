@@ -19,6 +19,7 @@ return new class extends Migration
         $table->decimal('price_buy', 6, 2);
         $table->text('image')->nullable(); 
         $table->decimal('unit', 6, 2);
+        $table->boolean('is_active')->default(false);
         $table->unsignedBigInteger('unit_quantity_id');
         $table->unsignedBigInteger('business_id');
         $table->unsignedBigInteger('brand_id');

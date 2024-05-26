@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Sale extends Model
+class SaleDetail extends Model
 {
     use HasFactory;
 
@@ -16,25 +15,18 @@ class Sale extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'date',
-        'time',
-        'total_sale',
+        'price_buy',
+        'price_sale',
+        'quantity',
         'discount',
-        'user_id',
+        'sale_id',
+        'product_id',
     ];
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-    public function paymentMethods()
-    {
-        return $this->belongsToMany(Payment_Method::class, 'payment_method_sale', 'sale_id', 'payment_method_id');
-    }
-    public function saleDetails()
-    {
-        return $this->hasMany(SaleDetail::class, 'sale_id', 'id');
-    }
 
+    public function sale()
+    {
+        return $this->belongsTo(Sale::class, 'sale_id', 'id');
+    }
     
     /**
      * The attributes that should be hidden for serialization.
@@ -44,7 +36,6 @@ class Sale extends Model
     protected $hidden = [
         'created_at',
         'updated_at',
-
     ];
 
     /**
@@ -58,12 +49,4 @@ class Sale extends Model
             
         ];
     }
-    protected static function booted()
-    {
-        static::creating(function ($cashOpening) {
-            $cashOpening->date = Carbon::now()->format('Y-m-d');
-            $cashOpening->time = Carbon::now()->format('H:i');
-        });
-    }
-    
 }
