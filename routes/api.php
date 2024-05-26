@@ -15,6 +15,7 @@ use App\Http\Controllers\DayController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\MipymeController;
 use App\Http\Controllers\PaymentMethodController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\RegisterBusinesController;
 use App\Http\Controllers\RegisterEmployeeController;
@@ -173,3 +174,9 @@ Route::post('/sales',[SaleController::class, 'store']);
 Route::patch('/sales/{id}',[SaleController::class, 'updatePartial']);
 Route::put('/sales/{id}',[SaleController::class, 'update']);
 Route::delete('/sales/{id}',[SaleController::class, 'destroy']);
+
+Route::get('/products',[ProductController::class, 'index']);
+Route::get('/products/{id}',[ProductController::class, 'show']);
+Route::post('/products',[ProductController::class, 'store']);
+Route::patch('/products/{id}',[ProductController::class, 'updatePartial']);
+Route::put('/products/{id}',[ProductController::class, 'update']);

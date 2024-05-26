@@ -25,6 +25,10 @@ class Provider extends Model
     {
         return $this->belongsToMany(Company::class);
     }
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'provider_id');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

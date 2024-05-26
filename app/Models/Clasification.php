@@ -18,6 +18,11 @@ class Clasification extends Model
         'name',
     ];
 
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'clasification_id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
