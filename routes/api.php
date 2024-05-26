@@ -74,6 +74,7 @@ Route::delete('/roles/{id}',[RoleController::class, 'destroy']);
 
 Route::get('/users',[UserController::class, 'index']);
 Route::get('/users/{id}',[UserController::class, 'show']);
+Route::post('/users/code',[UserController::class, 'verifyCode']);
 Route::post('/users',[UserController::class, 'store']);
 Route::put('/users/{id}',[UserController::class, 'update']);
 Route::patch('/users/{id}',[UserController::class, 'updatePartial']);
