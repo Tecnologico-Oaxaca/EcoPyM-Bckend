@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActionController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BranchController;
@@ -214,3 +215,10 @@ Route::post('/shoppin',[ShoppingController::class, 'store']);
 Route::put('/shoppin/{id}',[ShoppingController::class, 'update']);
 Route::patch('/shoppin/{id}',[ShoppingController::class, 'updatePartial']);
 Route::delete('/shoppin/{id}',[ShoppingController::class, 'destroy']);
+
+Route::get('/actions',[ActionController::class, 'index']);
+Route::get('/actions/{id}',[ActionController::class, 'show']);
+Route::post('/actions',[ActionController::class, 'store']);
+Route::put('/actions/{id}',[ActionController::class, 'update']);
+Route::patch('/actions/{id}',[ActionController::class, 'updatePartial']);
+Route::delete('/actions/{id}',[ActionController::class, 'destroy']);
