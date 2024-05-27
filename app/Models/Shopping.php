@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
 
-
-class Suggestion extends Model
+class Shopping extends Model
 {
     use HasFactory;
 
@@ -19,7 +18,7 @@ class Suggestion extends Model
     protected $fillable = [
         'date',
         'time',
-        'amountAprox',
+        'amount',
     ];
     
     /**

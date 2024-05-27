@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Suggestion;
+use App\Models\Shopping;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Validator;
 
-class SuggestionController extends Controller
+class ShoppingController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(){
         try {
-            $suggestion = Suggestion::all();
+            $shoppin = Shopping::all();
     
-            if ($suggestion->isEmpty()) {
+            if ($shoppin->isEmpty()) {
                 $data = [
-                    'message' => 'Sugerencias inexistentes',
+                    'message' => 'Compras inexistentes',
                     'data' => null,
                     'status' => Response::HTTP_NOT_FOUND,
                 ];
@@ -27,15 +27,15 @@ class SuggestionController extends Controller
             }
 
             $data = [
-                'message' => 'Sugerencias encontradas',
-                'data' => $suggestion,
+                'message' => 'Compras encontradas',
+                'data' => $shoppin,
                 'status' => Response::HTTP_OK,
             ];
             return response()->json($data, Response::HTTP_OK);
     
         } catch (\Exception $e) {
             $data = [
-                'message' => 'Error al obtener las Sugerencias',
+                'message' => 'Error al obtener las compras',
                 'data' => null,
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
             ];
@@ -48,13 +48,13 @@ class SuggestionController extends Controller
      */
     public function store(Request $request){
         $validator = Validator::make($request->all(), [
-            'amountAprox' => [
+            'amount' => [
                 'nullable', 'numeric','min:0'
             ],
 
         ], [
-            'amountAprox.numeric' => 'El monto aproximado debe ser un número.',
-            'amountAprox.min' => 'El monto aproximado no puede ser menor que cero.',
+            'amount.numeric' => 'El monto aproximado debe ser un número.',
+            'amount.min' => 'El monto aproximado no puede ser menor que cero.',
         ]);
     
         if ($validator->fails()) {
@@ -67,10 +67,10 @@ class SuggestionController extends Controller
             return response()->json($data, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         try {
-            $suggestion = Suggestion::create($validator->validated());
-            if (!$suggestion) {
+            $shoppin = Shopping::create($validator->validated());
+            if (!$shoppin) {
                 $data = [
-                    'message' => 'Error al crear la Sugerencia',
+                    'message' => 'Error al crear la compra',
                     'errors' => $validator->errors(),
                     'data' => null,
                     'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
@@ -78,14 +78,14 @@ class SuggestionController extends Controller
                 return response()->json($data, Response::HTTP_INTERNAL_SERVER_ERROR);
             }
             $data = [
-                'message' => 'Sugerencia creada',
-                'data' => $suggestion,
+                'message' => 'Compra creada',
+                'data' => $shoppin,
                 'status' => Response::HTTP_CREATED,
             ];
             return response()->json($data, Response::HTTP_CREATED);
         } catch (\Exception $e) {
             $data = [
-                'message' => 'Error al crear la sugerencia' ,
+                'message' => 'Error al crear la compra' ,
                 'data' => null,
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
             ];
@@ -97,10 +97,10 @@ class SuggestionController extends Controller
      * Display the specified resource.
      */
     public function show($id){
-        $suggestion = Suggestion::find($id);
-        if(!$suggestion){
+        $shoppin = Shopping::find($id);
+        if(!$shoppin){
             $data = [
-                'message' => 'Sugerencia no encontrada',
+                'message' => 'Compra no encontrada',
                 'data' => null,
                 'status' => Response::HTTP_NOT_FOUND 
             ];
@@ -108,32 +108,35 @@ class SuggestionController extends Controller
         }
 
         $data = [
-            'message' => 'Sugerencia encontrada',
-            'data' => $suggestion,
+            'message' => 'Compra encontrada',
+            'data' => $shoppin,
             'status' => Response::HTTP_OK,
         ];
         return response() -> json($data,Response::HTTP_OK);
     }
 
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, $id){
-        $suggestion = Suggestion::find($id);
-        if(!$suggestion){
+        $shoppin = Shopping::find($id);
+        if(!$shoppin){
             $data = [
-                'message' => 'Sugerencia no encontrada',
+                'message' => 'Compra no encontrada',
                 'data' => null,
                 'status' => Response::HTTP_NOT_FOUND,
             ];
             return response() -> json($data,Response::HTTP_NOT_FOUND);
         }
         $validator = Validator::make($request->all(), [
-            'amountAprox' => [
+            'amount' => [
                 'required', 'numeric','min:0'
             ],
 
         ], [
-            'amountAprox.required' => "El monto aproximado es requerido",
-            'amountAprox.numeric' => 'El monto aproximado debe ser un número.',
-            'amountAprox.min' => 'El monto aproximado no puede ser menor que cero.',
+            'amount.required' => "El monto aproximado es requerido",
+            'amount.numeric' => 'El monto aproximado debe ser un número.',
+            'amount.min' => 'El monto aproximado no puede ser menor que cero.',
         ]);
 
         if($validator ->fails()){
@@ -145,10 +148,10 @@ class SuggestionController extends Controller
             ];
             return response() -> json($data,Response::HTTP_BAD_REQUEST);
         }
-        $suggestion->update($validator->validated());
+        $shoppin->update($validator->validated());
         $data = [
-            'message' => 'Area actualizada',
-            'data' => $suggestion,
+            'message' => 'Compra actualizada',
+            'data' => $shoppin,
             'status' => Response::HTTP_OK,
         ];
         return response() -> json($data,Response::HTTP_OK);
@@ -158,31 +161,32 @@ class SuggestionController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy($id){
-        $suggestion = Suggestion::find($id);
-        if(!$suggestion){
+        $shoppin = Shopping::find($id);
+        if(!$shoppin){
             $data = [
-                'message' => 'Sugerencia no encontrada',
+                'message' => 'Compra no encontrada',
                 'data' => null,
                 'status' => Response::HTTP_NOT_FOUND,
             ];
             return response() -> json($data,Response::HTTP_NOT_FOUND);
         }
 
-        $suggestion -> delete();
+        $shoppin -> delete();
 
         $data = [
-            'message' => 'Sugerencia eliminada',
-            'data' => $suggestion,
+            'message' => 'Compra eliminada',
+            'data' => $shoppin,
             'status' => Response::HTTP_OK
         ];
         return response() -> json($data,Response::HTTP_OK);
     }
 
+
     public function updatePartial(Request $request, $id){
-        $suggestion = Suggestion::find($id);
-        if(!$suggestion){
+        $shoppin = Shopping::find($id);
+        if(!$shoppin){
             $data = [
-                'message' => 'Sugerencia no encontrada',
+                'message' => 'Compra no encontrada',
                 'data' => null,
                 'status' => Response::HTTP_NOT_FOUND
             ];
@@ -190,13 +194,13 @@ class SuggestionController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'amountAprox' => [
+            'amount' => [
                 'sometimes', 'numeric','min:0'
             ],
 
         ], [
-            'amountAprox.numeric' => 'El monto aproximado debe ser un número.',
-            'amountAprox.min' => 'El monto aproximado no puede ser menor que cero.',
+            'amount.numeric' => 'El monto aproximado debe ser un número.',
+            'amount.min' => 'El monto aproximado no puede ser menor que cero.',
         ]);
 
         if($validator ->fails()){
@@ -211,18 +215,17 @@ class SuggestionController extends Controller
         
         $updatedFields = [];
 
-        if($request -> has('amountAprox')){
-            $suggestion -> amountAprox = $request -> amountAprox;
-            $updatedFields['amountAprox'] = $request->amountAprox;
+        if($request -> has('amount')){
+            $shoppin -> amount = $request -> amount;
+            $updatedFields['amount'] = $request->amount;
         }
-        $suggestion -> save();
+        $shoppin -> save();
 
         $data = [
-            'message' => 'Sugerencia actualizada',
+            'message' => 'Compra actualizada',
             'data' => $updatedFields,
             'status' => RESPONSE::HTTP_OK
         ];
         return response() -> json($data,RESPONSE::HTTP_OK);
     }
-
 }

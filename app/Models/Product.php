@@ -57,10 +57,6 @@ class Product extends Model
     {
         return $this->hasMany(SaleDetail::class, 'product_id', 'id');
     }
-    public function suggestions()
-    {
-        return $this->hasMany(Suggestion::class);
-    }
     
 
     /**
