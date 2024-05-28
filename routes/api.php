@@ -18,6 +18,7 @@ use App\Http\Controllers\ExpenseTypeController;
 use App\Http\Controllers\MipymeController;
 use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\RegisterBusinesController;
 use App\Http\Controllers\RegisterEmployeeController;
@@ -222,3 +223,10 @@ Route::post('/actions',[ActionController::class, 'store']);
 Route::put('/actions/{id}',[ActionController::class, 'update']);
 Route::patch('/actions/{id}',[ActionController::class, 'updatePartial']);
 Route::delete('/actions/{id}',[ActionController::class, 'destroy']);
+
+Route::get('/promotions',[PromotionController::class, 'index']);
+Route::post('/promotions',[PromotionController::class, 'store']);
+Route::get('/promotions/{id}',[PromotionController::class, 'show']);
+Route::put('/promotions/{id}',[PromotionController::class, 'update']);
+Route::patch('/promotions/{id}',[PromotionController::class, 'updatePartial']);
+Route::delete('/promotions/{id}',[PromotionController::class, 'destroy']);
