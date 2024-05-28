@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Branch;
 use App\Models\Mipyme;
+use App\Services\TransferirDatosService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
@@ -12,6 +13,13 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterBusinesController extends Controller
 {
+    protected $transferirDatosService;
+
+    public function __construct(TransferirDatosService $transferirDatosService)
+    {
+        $this->transferirDatosService = $transferirDatosService;
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -89,7 +97,7 @@ class RegisterBusinesController extends Controller
         ]);
 
         if ($validator->fails()) {
-            $data =[
+            $data = [
                 'message' => 'Validación fallida',
                 'errors' => $validator->errors(),
                 'data' => null,
@@ -123,6 +131,9 @@ class RegisterBusinesController extends Controller
 
             DB::commit();
 
+            // Ejecutar la lógica de transferencia de datos después de que la transacción se haya comprometido
+            $this->transferirDatosService->transferirDatos($request->business_ids);
+
             $data = [
                 'message' => 'MIPyME y sucursal creadas con éxito',
                 'data' => [
@@ -144,5 +155,5 @@ class RegisterBusinesController extends Controller
             return response()->json($data, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-
+    
 }
