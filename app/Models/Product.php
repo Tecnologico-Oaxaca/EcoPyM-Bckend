@@ -57,7 +57,13 @@ class Product extends Model
     {
         return $this->hasMany(SaleDetail::class, 'product_id', 'id');
     }
-    
+    public function promotions()
+    {
+        return $this->belongsToMany(Promotion::class, 'product_promotion')
+                    ->withPivot('stock', 'product_price_buy', 'product_price_sale')
+                    ->withTimestamps();
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.
