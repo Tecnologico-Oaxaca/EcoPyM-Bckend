@@ -27,6 +27,7 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SaleDetailController;
 use App\Http\Controllers\ShoppingController;
 use App\Http\Controllers\SuggestionController;
+use App\Http\Controllers\TrendController;
 use App\Http\Controllers\UnitQuantityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VerifyProductController;
@@ -234,3 +235,6 @@ Route::get('/promotions/{id}',[PromotionController::class, 'show']);
 Route::put('/promotions/{id}',[PromotionController::class, 'update']);
 Route::patch('/promotions/{id}',[PromotionController::class, 'updatePartial']);
 Route::delete('/promotions/{id}',[PromotionController::class, 'destroy']);
+
+Route::get('/trends',[TrendController::class, 'index']);
+Route::get('/trends/comparar',[TrendController::class, 'compararConProductos']);
