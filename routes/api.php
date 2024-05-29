@@ -33,6 +33,8 @@ use App\Http\Controllers\VerifyProductController;
 use App\Http\Controllers\WorkShiftController;
 use App\Models\SaleDetail;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TrendController;
+
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/registerBusines', [RegisterBusinesController::class, 'store']);
@@ -210,6 +212,13 @@ Route::delete('/expense/{id}',[ExpenseTypeController::class, 'destroy']);
 Route::get('/sugestion',[SuggestionController::class, 'index']);
 Route::get('/sugestion/{id}',[SuggestionController::class, 'show']);
 Route::post('/sugestion',[SuggestionController::class, 'store']);
+<<<<<<< HEAD
+Route::delete('/sugestion/{id}',[SuggestionController::class, 'destroy']);
+
+Route::get('/trends',[TrendController::class, 'index']);
+Route::get('/trends/comparar',[TrendController::class, 'compararConProductos']);
+
+=======
 Route::put('/sugestion/{id}',[SuggestionController::class, 'update']);
 Route::patch('/sugestion/{id}',[SuggestionController::class, 'updatePartial']);
 Route::delete('/sugestion/{id}',[SuggestionController::class, 'destroy']);
@@ -234,3 +243,4 @@ Route::get('/promotions/{id}',[PromotionController::class, 'show']);
 Route::put('/promotions/{id}',[PromotionController::class, 'update']);
 Route::patch('/promotions/{id}',[PromotionController::class, 'updatePartial']);
 Route::delete('/promotions/{id}',[PromotionController::class, 'destroy']);
+>>>>>>> 0ff4b775354584ae914463d8329b33a50feeca9d

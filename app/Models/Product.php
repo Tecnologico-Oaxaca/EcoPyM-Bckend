@@ -63,7 +63,14 @@ class Product extends Model
                     ->withPivot('stock', 'product_price_buy', 'product_price_sale')
                     ->withTimestamps();
     }
+<<<<<<< HEAD
+    public function trend()
+    {
+        return $this->hasMany(Trend::class);
+    }
+=======
 
+>>>>>>> 0ff4b775354584ae914463d8329b33a50feeca9d
 
     /**
      * The attributes that should be hidden for serialization.
