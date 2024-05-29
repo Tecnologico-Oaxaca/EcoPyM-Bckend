@@ -1,3 +1,46 @@
+commit 4524ad9420fe5ab2fad68efb3d4ffcf2bef428b2
+Merge: 0fbfb0a ad01798
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Wed May 29 03:16:03 2024 -0600
+
+    Merge pull request #59 from davidrolito7/main
+    
+    Endpint Tendencias
+
+commit 0fbfb0a0dad72ad39076162ea6f5657f1778fa1c
+Merge: 0ff4b77 5b6ad0d
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Wed May 29 03:15:35 2024 -0600
+
+    Merge pull request #60 from SoyFroylanMtz/sale
+    
+    Nuevos cambios
+
+commit 5b6ad0d8a66d98292f78d6b12b916eb2044d8841
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Wed May 29 03:14:37 2024 -0600
+
+    Nuevos cambios
+
+commit ad01798beab6031d85b5997461ad29ec032dd35b
+Merge: de557b1 0ff4b77
+Author: David <dvirdr7@gmail.com>
+Date:   Wed May 29 03:08:32 2024 -0600
+
+    Merge branch 'main' of https://github.com/davidrolito7/EcoPyM-Backend
+
+commit de557b1431edd8b56c687c758aa0be94963d9fde
+Author: David <dvirdr7@gmail.com>
+Date:   Wed May 29 02:58:39 2024 -0600
+
+    Tendencias endpoint
+
+commit 0ff4b775354584ae914463d8329b33a50feeca9d
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Tue May 28 18:28:43 2024 -0600
+
+    Actualizando log commits
+
 commit 30b73e60ba4c0c5f34c49985ac05881598bb90f1
 Merge: 139c9e2 4575ec4
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
@@ -48,6 +91,12 @@ Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
 Date:   Tue May 28 15:05:59 2024 -0600
 
     Modelo Dicriminar-Giro
+
+commit fde44f2b7f1d1106da2e30fd34fe428add037075
+Author: David <dvirdr7@gmail.com>
+Date:   Tue May 28 13:15:34 2024 -0600
+
+    Seeder que me pediste
 
 commit 3c14894372d9efc513373e1cb5e345d715849f1a
 Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
