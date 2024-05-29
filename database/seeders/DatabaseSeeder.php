@@ -3,6 +3,13 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\WorkShift;
+use App\Models\Day;
+use App\Models\Area;
+use App\Models\Role;
+
+
+
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
