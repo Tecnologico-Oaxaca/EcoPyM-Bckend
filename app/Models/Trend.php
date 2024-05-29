@@ -8,12 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Trend extends Model
 {
     use HasFactory;
-     /**
-     * Get the post that owns the Comment
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function product(): BelongsTo
+
+
+    public function product()
     {
         return $this->belongsTo(Product::class);
     }

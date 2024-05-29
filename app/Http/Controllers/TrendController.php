@@ -62,4 +62,3 @@ class TrendController extends Controller
         return response()->json($trends);
     }
     
-}
