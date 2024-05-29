@@ -4,10 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
 
-
-class Suggestion extends Model
+class Action extends Model
 {
     use HasFactory;
 
@@ -17,9 +15,7 @@ class Suggestion extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'date',
-        'time',
-        'amountAprox',
+        'type',
     ];
     
     /**
@@ -42,14 +38,5 @@ class Suggestion extends Model
         return [
             
         ];
-    }
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($suggestion) {
-            $suggestion->date = Carbon::today()->toDateString();
-            $suggestion->time = Carbon::now()->format('H:i:s');
-        });
     }
 }

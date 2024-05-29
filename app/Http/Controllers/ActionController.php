@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Suggestion;
+use App\Models\Action;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Validator;
 
-class SuggestionController extends Controller
+class ActionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(){
+    public function index() {
         try {
-            $suggestion = Suggestion::all();
+            $actions = Action::all();
     
-            if ($suggestion->isEmpty()) {
+            if ($actions->isEmpty()) {
                 $data = [
-                    'message' => 'Sugerencias inexistentes',
+                    'message' => 'Acciones inexistentes',
                     'data' => null,
                     'status' => Response::HTTP_NOT_FOUND,
                 ];
@@ -27,15 +27,15 @@ class SuggestionController extends Controller
             }
 
             $data = [
-                'message' => 'Sugerencias encontradas',
-                'data' => $suggestion,
+                'message' => 'Acciones encontradas',
+                'data' => $actions,
                 'status' => Response::HTTP_OK,
             ];
             return response()->json($data, Response::HTTP_OK);
     
         } catch (\Exception $e) {
             $data = [
-                'message' => 'Error al obtener las Sugerencias',
+                'message' => 'Error al obtener las Acciones',
                 'data' => null,
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
             ];
@@ -46,15 +46,17 @@ class SuggestionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request){
+    public function store(Request $request) {
         $validator = Validator::make($request->all(), [
-            'amountAprox' => [
-                'nullable', 'numeric','min:0'
+            'type' => [
+                'required','string','max:30',
+                Rule::unique('actions', 'type') 
             ],
-
         ], [
-            'amountAprox.numeric' => 'El monto aproximado debe ser un número.',
-            'amountAprox.min' => 'El monto aproximado no puede ser menor que cero.',
+            'type.required' => 'La acción es obligatorio',
+            'type.string' => 'La acción debe ser una cadena de texto.',
+            'type.max' => 'La acción no puede ser mayor a 30 caracteres.',
+            'type.unique' => 'La acción ya existe.', 
         ]);
     
         if ($validator->fails()) {
@@ -67,10 +69,10 @@ class SuggestionController extends Controller
             return response()->json($data, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         try {
-            $suggestion = Suggestion::create($validator->validated());
-            if (!$suggestion) {
+            $actions = Action::create($validator->validated());
+            if (!$actions) {
                 $data = [
-                    'message' => 'Error al crear la Sugerencia',
+                    'message' => 'Error al crear la acción',
                     'errors' => $validator->errors(),
                     'data' => null,
                     'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
@@ -78,14 +80,14 @@ class SuggestionController extends Controller
                 return response()->json($data, Response::HTTP_INTERNAL_SERVER_ERROR);
             }
             $data = [
-                'message' => 'Sugerencia creada',
-                'data' => $suggestion,
+                'message' => 'Acción creada',
+                'data' => $actions,
                 'status' => Response::HTTP_CREATED,
             ];
             return response()->json($data, Response::HTTP_CREATED);
         } catch (\Exception $e) {
             $data = [
-                'message' => 'Error al crear la sugerencia' ,
+                'message' => 'Error al crear la acción',
                 'data' => null,
                 'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
             ];
@@ -97,10 +99,11 @@ class SuggestionController extends Controller
      * Display the specified resource.
      */
     public function show($id){
-        $suggestion = Suggestion::find($id);
-        if(!$suggestion){
+        $actions = Action::find($id);
+
+        if(!$actions){
             $data = [
-                'message' => 'Sugerencia no encontrada',
+                'message' => 'Acción no encontrada',
                 'data' => null,
                 'status' => Response::HTTP_NOT_FOUND 
             ];
@@ -108,32 +111,36 @@ class SuggestionController extends Controller
         }
 
         $data = [
-            'message' => 'Sugerencia encontrada',
-            'data' => $suggestion,
+            'message' => 'Accción encontrada',
+            'data' => $actions,
             'status' => Response::HTTP_OK,
         ];
         return response() -> json($data,Response::HTTP_OK);
     }
 
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, $id){
-        $suggestion = Suggestion::find($id);
-        if(!$suggestion){
+        $actions = Action::find($id);
+        if(!$actions){
             $data = [
-                'message' => 'Sugerencia no encontrada',
+                'message' => 'Accion no encontrada',
                 'data' => null,
                 'status' => Response::HTTP_NOT_FOUND,
             ];
             return response() -> json($data,Response::HTTP_NOT_FOUND);
         }
         $validator = Validator::make($request->all(), [
-            'amountAprox' => [
-                'required', 'numeric','min:0'
+            'type' => [
+                'required','string','max:30',
+                Rule::unique('actions', 'type') 
             ],
-
         ], [
-            'amountAprox.required' => "El monto aproximado es requerido",
-            'amountAprox.numeric' => 'El monto aproximado debe ser un número.',
-            'amountAprox.min' => 'El monto aproximado no puede ser menor que cero.',
+            'type.required'=> "La acción es requerida",
+            'type.string' => 'La acción debe ser una cadena de texto.',
+            'type.max' => 'La acción no puede ser mayor a 30 caracteres.',
+            'type.unique' => 'La acción ya existe.', 
         ]);
 
         if($validator ->fails()){
@@ -145,10 +152,10 @@ class SuggestionController extends Controller
             ];
             return response() -> json($data,Response::HTTP_BAD_REQUEST);
         }
-        $suggestion->update($validator->validated());
+        $actions->update($validator->validated());
         $data = [
-            'message' => 'Area actualizada',
-            'data' => $suggestion,
+            'message' => 'Acción actualizada',
+            'data' => $actions,
             'status' => Response::HTTP_OK,
         ];
         return response() -> json($data,Response::HTTP_OK);
@@ -158,31 +165,31 @@ class SuggestionController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy($id){
-        $suggestion = Suggestion::find($id);
-        if(!$suggestion){
+        $actions = Action::find($id);
+        if(!$actions){
             $data = [
-                'message' => 'Sugerencia no encontrada',
+                'message' => 'Acción no encontrada',
                 'data' => null,
                 'status' => Response::HTTP_NOT_FOUND,
             ];
             return response() -> json($data,Response::HTTP_NOT_FOUND);
         }
 
-        $suggestion -> delete();
+        $actions -> delete();
 
         $data = [
-            'message' => 'Sugerencia eliminada',
-            'data' => $suggestion,
+            'message' => 'Accion eliminada',
+            'data' => $actions,
             'status' => Response::HTTP_OK
         ];
         return response() -> json($data,Response::HTTP_OK);
     }
 
     public function updatePartial(Request $request, $id){
-        $suggestion = Suggestion::find($id);
-        if(!$suggestion){
+        $actions = Action::find($id);
+        if(!$actions){
             $data = [
-                'message' => 'Sugerencia no encontrada',
+                'message' => 'Acción no encontrada',
                 'data' => null,
                 'status' => Response::HTTP_NOT_FOUND
             ];
@@ -190,13 +197,14 @@ class SuggestionController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'amountAprox' => [
-                'sometimes', 'numeric','min:0'
+            'type' => [
+                'string','max:30',
+                Rule::unique('actions', 'type') 
             ],
-
         ], [
-            'amountAprox.numeric' => 'El monto aproximado debe ser un número.',
-            'amountAprox.min' => 'El monto aproximado no puede ser menor que cero.',
+            'type.string' => 'La acción debe ser una cadena de texto.',
+            'type.max' => 'La acción no puede ser mayor a 30 caracteres.',
+            'type.unique' => 'La acción ya existe.', 
         ]);
 
         if($validator ->fails()){
@@ -211,18 +219,17 @@ class SuggestionController extends Controller
         
         $updatedFields = [];
 
-        if($request -> has('amountAprox')){
-            $suggestion -> amountAprox = $request -> amountAprox;
-            $updatedFields['amountAprox'] = $request->amountAprox;
+        if($request -> has('type')){
+            $actions -> type = $request -> type;
+            $updatedFields['type'] = $request->type;
         }
-        $suggestion -> save();
+        $actions -> save();
 
         $data = [
-            'message' => 'Sugerencia actualizada',
+            'message' => 'Acción actualizada',
             'data' => $updatedFields,
             'status' => RESPONSE::HTTP_OK
         ];
         return response() -> json($data,RESPONSE::HTTP_OK);
     }
-
 }

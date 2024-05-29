@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
 
-
-class Suggestion extends Model
+class Promotion extends Model
 {
     use HasFactory;
 
@@ -17,11 +16,21 @@ class Suggestion extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'date',
-        'time',
-        'amountAprox',
+        'quantity',
+        'date_start',
+        'date_end',
+        'description',
+        'price_promotion',
+        'price_real'
     ];
-    
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'product_promotion')
+                    ->withPivot('stock', 'product_price_buy', 'product_price_sale')
+                    ->withTimestamps();
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -47,9 +56,8 @@ class Suggestion extends Model
     {
         parent::boot();
 
-        static::creating(function ($suggestion) {
-            $suggestion->date = Carbon::today()->toDateString();
-            $suggestion->time = Carbon::now()->format('H:i:s');
+        static::creating(function ($promotion) {
+            $promotion->date_start = $promotion->date_start ?? Carbon::today()->toDateString();
         });
     }
 }

@@ -1,3 +1,123 @@
+commit 30b73e60ba4c0c5f34c49985ac05881598bb90f1
+Merge: 139c9e2 4575ec4
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Tue May 28 18:27:40 2024 -0600
+
+    Merge pull request #58 from SoyFroylanMtz/rama
+    
+    Transferencia Product-Product-global
+
+commit 4575ec4b7e246423a8b084cdeb0f22b4d603b266
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Tue May 28 18:26:51 2024 -0600
+
+    Transferencia Product-Product-global
+
+commit 139c9e2d4c4ebd13a6b80158a75fb2d989a8558f
+Merge: d134281 96a7ff6
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Tue May 28 18:10:13 2024 -0600
+
+    Merge pull request #57 from davidrolito7/main
+    
+    actualizar DatabaseSeeder.php
+
+commit 96a7ff6ba2edb5cfd27ca429e1463bce88899a5c
+Author: davidrolito7 <139143108+davidrolito7@users.noreply.github.com>
+Date:   Tue May 28 18:07:58 2024 -0600
+
+    actualizar DatabaseSeeder.php
+
+commit d1342819c28d863e6a0c88ebbad2cc5ccf852ea4
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Tue May 28 15:09:00 2024 -0600
+
+    Actualizando log commits
+
+commit 461ed1339e7e65e91f63a0e1bf1e7e13df38efdc
+Merge: 3c14894 14abee0
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Tue May 28 15:07:26 2024 -0600
+
+    Merge pull request #56 from SoyFroylanMtz/rama-nueva
+    
+    Modelo Dicriminar-Giro
+
+commit 14abee06208ae27bb49e6901e0b1b72ae3016dc6
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Tue May 28 15:05:59 2024 -0600
+
+    Modelo Dicriminar-Giro
+
+commit 3c14894372d9efc513373e1cb5e345d715849f1a
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Tue May 28 00:33:37 2024 -0600
+
+    Actualizando log commits
+
+commit 0c7691e62365f48f34d12a95cfa02bd2830ce9b7
+Merge: 4de2348 7c48e25
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Tue May 28 00:31:12 2024 -0600
+
+    Merge pull request #55 from SoyFroylanMtz/cambios
+    
+    Desarrollo Api Promotion
+
+commit 7c48e25634e80f7950657640eb2339ac7efcd667
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Tue May 28 00:28:08 2024 -0600
+
+    Desarrollo Api Promotion
+
+commit 4de2348c5a32e27bb131aed708a50cf915b25ba5
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Mon May 27 01:24:58 2024 -0600
+
+    Actualizando log commits
+
+commit 31853e23349947aef86ceda319ca6b8d69d2649c
+Merge: 85e95b9 57b8187
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Mon May 27 01:23:46 2024 -0600
+
+    Merge pull request #54 from SoyFroylanMtz/rama-nueva
+    
+    Desarrollo Api Action
+
+commit 57b818725199947da8cdb2ac17f05484284cbe75
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Mon May 27 01:22:34 2024 -0600
+
+    Desarrollo Api Action
+
+commit 85e95b9c0a4ee63ba589ec744189565368df98af
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Mon May 27 00:55:02 2024 -0600
+
+    Actualizando log commits
+
+commit 4e51809eba88953393ff1c9327d02a5e9d337b63
+Merge: a0d163a 2f46f5e
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Mon May 27 00:53:16 2024 -0600
+
+    Merge pull request #53 from SoyFroylanMtz/rama
+    
+    Desarrollo Api Shoppinge
+
+commit 2f46f5eb8ecea6ff02d8d7bb1a4eba3f9eb2218f
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Mon May 27 00:52:37 2024 -0600
+
+    Desarrollo Api Shoppinge
+
+commit a0d163adc434d0eec11dfab0730a0e86113d1181
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Sun May 26 16:11:47 2024 -0600
+
+    Actualizando log commits
+
 commit f55d04bf17dd91f109c74a71976f59f98f8c1127
 Merge: 85723fa 26fcca5
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>

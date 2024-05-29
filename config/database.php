@@ -108,6 +108,20 @@ return [
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
+        'product_globals' => [
+            'driver' => 'mysql',
+            'host' => env('DB_PRODUCTS_HOST', '127.0.0.1'),
+            'port' => env('DB_PRODUCTS_PORT', '3306'),
+            'database' => env('DB_PRODUCTS_DATABASE', 'product_globals'),
+            'username' => env('DB_PRODUCTS_USERNAME', 'root'),
+            'password' => env('DB_PRODUCTS_PASSWORD', 'Javascript5.0'),
+            'unix_socket' => env('DB_PRODUCTS_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
 
     ],
 
