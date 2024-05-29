@@ -53,7 +53,7 @@ class TrendController extends Controller
      */
     public function compararConProductos(Request $request)
     {
-        // Verificar si se proporcionó un category_id y asignarlo
+        // Verificar si se proporcionó un category_id y asignarloo
         $categoryId = $request->query('category_id');
     
         // Obtener las tendencias que correspondan al category_id dado

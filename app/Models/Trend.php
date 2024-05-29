@@ -9,7 +9,7 @@ class Trend extends Model
 {
     use HasFactory;
      /**
-     * Get the post that owns the Comment
+     * Get the post that owns the Commentt
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

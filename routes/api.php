@@ -212,35 +212,7 @@ Route::delete('/expense/{id}',[ExpenseTypeController::class, 'destroy']);
 Route::get('/sugestion',[SuggestionController::class, 'index']);
 Route::get('/sugestion/{id}',[SuggestionController::class, 'show']);
 Route::post('/sugestion',[SuggestionController::class, 'store']);
-<<<<<<< HEAD
 Route::delete('/sugestion/{id}',[SuggestionController::class, 'destroy']);
 
-Route::get('/trends',[TrendController::class, 'index']);
 Route::get('/trends/comparar',[TrendController::class, 'compararConProductos']);
 
-=======
-Route::put('/sugestion/{id}',[SuggestionController::class, 'update']);
-Route::patch('/sugestion/{id}',[SuggestionController::class, 'updatePartial']);
-Route::delete('/sugestion/{id}',[SuggestionController::class, 'destroy']);
-
-Route::get('/shoppin',[ShoppingController::class, 'index']);
-Route::get('/shoppin/{id}',[ShoppingController::class, 'show']);
-Route::post('/shoppin',[ShoppingController::class, 'store']);
-Route::put('/shoppin/{id}',[ShoppingController::class, 'update']);
-Route::patch('/shoppin/{id}',[ShoppingController::class, 'updatePartial']);
-Route::delete('/shoppin/{id}',[ShoppingController::class, 'destroy']);
-
-Route::get('/actions',[ActionController::class, 'index']);
-Route::get('/actions/{id}',[ActionController::class, 'show']);
-Route::post('/actions',[ActionController::class, 'store']);
-Route::put('/actions/{id}',[ActionController::class, 'update']);
-Route::patch('/actions/{id}',[ActionController::class, 'updatePartial']);
-Route::delete('/actions/{id}',[ActionController::class, 'destroy']);
-
-Route::get('/promotions',[PromotionController::class, 'index']);
-Route::post('/promotions',[PromotionController::class, 'store']);
-Route::get('/promotions/{id}',[PromotionController::class, 'show']);
-Route::put('/promotions/{id}',[PromotionController::class, 'update']);
-Route::patch('/promotions/{id}',[PromotionController::class, 'updatePartial']);
-Route::delete('/promotions/{id}',[PromotionController::class, 'destroy']);
->>>>>>> 0ff4b775354584ae914463d8329b33a50feeca9d
