@@ -29,6 +29,7 @@ use App\Http\Controllers\ShoppingController;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\UnitQuantityController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VerifyProductController;
 use App\Http\Controllers\WorkShiftController;
 use App\Models\SaleDetail;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/registerBusines', [RegisterBusinesController::class, 'store']);
 Route::post('/registerEmployee', [RegisterEmployeeController::class, 'store']);
+Route::get('/verifyProduct/{id}', [VerifyProductController::class, 'show']);
+
+Route::get('/productsName', [ProductController::class, 'searchName']);
 
 Route::middleware('auth:sanctum')->group(function() {
     Route::get('/profile', [AuthController::class, 'profile']);
