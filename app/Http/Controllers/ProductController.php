@@ -43,6 +43,43 @@ class ProductController extends Controller
         }
     }
 
+    public function searchName(Request $request){
+        try {
+            $name = $request->query('name');
+
+            if ($name) {
+                $products = Product::where('name', 'LIKE', '%' . $name . '%')->get();
+            } else {
+                // Si no se proporciona el parámetro, retornar todos los productos
+                $products = Product::all();
+            }
+
+            if ($products->isEmpty()) {
+                $data = [
+                    'message' => 'Productos inexistentes',
+                    'data' => null,
+                    'status' => Response::HTTP_NOT_FOUND,
+                ];
+                return response()->json($data, Response::HTTP_NOT_FOUND);
+            }
+
+            $data = [
+                'message' => 'Productos encontrados',
+                'data' => $products,
+                'status' => Response::HTTP_OK,
+            ];
+            return response()->json($data, Response::HTTP_OK);
+
+        } catch (\Exception $e) {
+            $data = [
+                'message' => 'Error al obtener los productos',
+                'data' => null,
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
+            ];
+            return response()->json($data, Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -164,7 +201,7 @@ class ProductController extends Controller
 
         $data = [
             'message' => 'Producto encontrada',
-            'data' => $products,
+            'data' => $products->load(['clasification']),
             'status' => Response::HTTP_OK,
         ];
         return response() -> json($data,Response::HTTP_OK);
@@ -377,8 +414,9 @@ class ProductController extends Controller
             $products -> description = $request -> description;
             $updatedFields['description'] = $request->description;
         }
-        if($request -> has('price_sale')){
-            $products -> price_sale = $request -> price_sale;
+        if ($request->has('price_sale')) {
+            $products->price_sale = $request->price_sale;
+            $products->is_active = true; 
             $updatedFields['price_sale'] = $request->price_sale;
         }
         if($request -> has('price_buy')){
