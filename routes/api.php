@@ -29,6 +29,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkShiftController;
 use App\Models\SaleDetail;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TrendController;
+
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/registerBusines', [RegisterBusinesController::class, 'store']);
@@ -204,3 +206,7 @@ Route::get('/sugestion',[SuggestionController::class, 'index']);
 Route::get('/sugestion/{id}',[SuggestionController::class, 'show']);
 Route::post('/sugestion',[SuggestionController::class, 'store']);
 Route::delete('/sugestion/{id}',[SuggestionController::class, 'destroy']);
+
+Route::get('/trends',[TrendController::class, 'index']);
+Route::get('/trends/comparar',[TrendController::class, 'compararConProductos']);
+

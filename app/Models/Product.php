@@ -61,7 +61,10 @@ class Product extends Model
     {
         return $this->hasMany(Suggestion::class);
     }
-    
+    public function trend()
+    {
+        return $this->hasMany(Trend::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
