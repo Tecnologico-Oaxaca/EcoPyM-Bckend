@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class TransferirDatosService
 {
@@ -26,6 +27,7 @@ class TransferirDatosService
                 // Ejecutar lógica para clasificaciones y marcas
                 $this->rellenarClasificacion($giro->id);
                 $this->rellenarBrand($giro->id);
+                $this->transferirProductos($giro->id);
 
             } catch (\Exception $e) {
                 info("Error al conectar o consultar la base de datos: " . $e->getMessage());
@@ -104,5 +106,55 @@ class TransferirDatosService
                 info("Marca ya existente: {$brand->brand}");
             }
         }
+    }
+    public function transferirProductos($giroId)
+    {
+        Log::info("Transfiriendo productos para el giro ID: $giroId");
+
+        // Fetch products from the database
+        $products = DB::connection('product_globals')
+            ->table('global_products')
+            ->where('giro_id', $giroId)
+            ->select('id', 'description', 'description as name', 'image_url as image', 'giro_id as business_id', 'category_id as clasification_id', 'brand')
+            ->get();
+
+        if ($products->isEmpty()) {
+            Log::info("No products found for giro_id: $giroId");
+            return;
+        }
+
+        $insertedCount = 0;
+        $timestamp = Carbon::now();
+
+        foreach ($products as $product) {
+            // Check if clasification_id exists in clasifications table
+            $classificationExists = DB::table('clasifications')->where('id', $product->clasification_id)->exists();
+
+            if ($classificationExists) {
+                // Get the brand ID
+                $brandId = DB::table('brands')->where('name', $product->brand)->value('id');
+
+                if ($brandId) {
+                    DB::connection('mysql')->table('products')->insert([
+                        'id' => $product->id,
+                        'name' => $product->name,
+                        'description' => $product->description,
+                        'image' => $product->image,
+                        'business_id' => $product->business_id,
+                        'clasification_id' => $product->clasification_id,
+                        'brand_id' => $brandId,
+                        'created_at' => $timestamp,
+                        'updated_at' => $timestamp,
+                    ]);
+                    $insertedCount++;
+                } else {
+                    Log::warning("Skipping product ID: {$product->id} due to invalid brand: {$product->brand}");
+                }
+            } else {
+                Log::warning("Skipping product ID: {$product->id} due to invalid clasification_id: {$product->clasification_id}");
+            }
+        }
+
+        Log::info("Inserted $insertedCount products into the products table for giro_id: $giroId");
     }
 }
