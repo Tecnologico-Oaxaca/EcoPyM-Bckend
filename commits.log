@@ -1,3 +1,39 @@
+commit 30b73e60ba4c0c5f34c49985ac05881598bb90f1
+Merge: 139c9e2 4575ec4
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Tue May 28 18:27:40 2024 -0600
+
+    Merge pull request #58 from SoyFroylanMtz/rama
+    
+    Transferencia Product-Product-global
+
+commit 4575ec4b7e246423a8b084cdeb0f22b4d603b266
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Tue May 28 18:26:51 2024 -0600
+
+    Transferencia Product-Product-global
+
+commit 139c9e2d4c4ebd13a6b80158a75fb2d989a8558f
+Merge: d134281 96a7ff6
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Tue May 28 18:10:13 2024 -0600
+
+    Merge pull request #57 from davidrolito7/main
+    
+    actualizar DatabaseSeeder.php
+
+commit 96a7ff6ba2edb5cfd27ca429e1463bce88899a5c
+Author: davidrolito7 <139143108+davidrolito7@users.noreply.github.com>
+Date:   Tue May 28 18:07:58 2024 -0600
+
+    actualizar DatabaseSeeder.php
+
+commit d1342819c28d863e6a0c88ebbad2cc5ccf852ea4
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Tue May 28 15:09:00 2024 -0600
+
+    Actualizando log commits
+
 commit 461ed1339e7e65e91f63a0e1bf1e7e13df38efdc
 Merge: 3c14894 14abee0
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
