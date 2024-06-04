@@ -15,12 +15,12 @@ return new class extends Migration
             $table->text('image')->nullable();
             $table->time('open_time');
             $table->time('close_time');
-            $table->string('phone',10)->unique();
+            $table->string('phone',10)->nullable()->unique();
             $table->string('state');
             $table->string('city');
             $table->string('district');
             $table->string('street');
-            $table->integer('number')->unsigned();
+            $table->integer('number')->nullable();
             $table->unsignedBigInteger('mipyme_id');
             $table->timestamps();
 

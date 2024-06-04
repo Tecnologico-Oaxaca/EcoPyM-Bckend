@@ -62,12 +62,6 @@ class BranchController extends Controller
             ],
             'state' => [
                 'required',
-                Rule::unique('branches')->where(function ($query) use ($request) {
-                           return $query->where('city', $request->city)
-                                        ->where('district', $request->district)
-                                        ->where('street', $request->street)
-                                        ->where('number', $request->number);
-                }),
             ],
             'city' => [
                 'required',
@@ -94,7 +88,6 @@ class BranchController extends Controller
             'phone.digits' => 'El número de teléfono debe tener exactamente 10 dígitos.',
             'phone.unique' => 'El numero ya existe.',
             'state.required' => 'El estado es obligatorio.',
-            'state.unique' => 'Una sucursal con esta dirección ya existe.',
             'city.required' => 'El municipio es obligatoria.',
             'district.required' => 'La colonia es obligatorio.',
             'street.required' => 'La calle es obligatoria.',
@@ -193,14 +186,6 @@ class BranchController extends Controller
             ],
             'state' => [
                 'required',
-                Rule::unique('branches')
-                    ->where(function ($query) use ($request, $branches) {
-                        return $query->where('city', $request->city)
-                                     ->where('district', $request->district)
-                                     ->where('street', $request->street)
-                                     ->where('number', $request->number)
-                                     ->where('id', '<>', $branches->id); 
-                    }),
             ],            
             'city' => [
                 'required',
@@ -228,7 +213,6 @@ class BranchController extends Controller
             'phone.digits' => 'El número de teléfono debe tener exactamente 10 dígitos.',
             'phone.unique' => 'El numero ya existe.',
             'state.required' => 'El estado es obligatorio.',
-            'state.unique' => 'Una sucursal con esta dirección ya existe.',
             'city.required' => 'El municipio es obligatoria.',
             'district.required' => 'La colonia es obligatorio.',
             'street.required' => 'La calle es obligatoria.',
@@ -311,14 +295,6 @@ class BranchController extends Controller
             ],
             'state' => [
                 'required_with_all:city,district,street,number',
-                Rule::unique('branches')
-                    ->where(function ($query) use ($request, $branches) {
-                        return $query->where('city', $request->city)
-                                     ->where('district', $request->district)
-                                     ->where('street', $request->street)
-                                     ->where('number', $request->number)
-                                     ->where('id', '<>', $branches->id); 
-                    }),
             ],
             'city' => [
                 'required_with_all:state,district,street,number'
@@ -343,7 +319,6 @@ class BranchController extends Controller
             'phone.digits' => 'El número de teléfono debe tener exactamente 10 dígitos.',
             'phone.unique' => 'El número ya existe.',
             'state.required_with_all' => 'El campo state es obligatorio cuando city, district, street, y number están presentes.',
-            'state.unique' => 'La combinación de dirección ya existe en otra sucursal.',
             'city.required_with_all' => 'El campo city es obligatorio cuando state, district, street, y number están presentes.',
             'district.required_with_all' => 'El campo district es obligatorio cuando state, city, street, y number están presentes.',
             'street.required_with_all' => 'El campo street es obligatorio cuando state, city, district, y number están presentes.',

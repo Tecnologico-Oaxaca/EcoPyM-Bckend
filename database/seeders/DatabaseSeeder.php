@@ -6,16 +6,12 @@ use App\Models\User;
 use App\Models\WorkShift;
 use App\Models\Day;
 use App\Models\Area;
-use App\Models\Role;
-
-
-
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Spatie\Permission\Models\Role;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-     /**
+    /**
      * Seed the application's database.
      */
     public function run(): void
@@ -59,27 +55,24 @@ class DatabaseSeeder extends Seeder
         ];
 
         $roles = [
-            ['name' => 'Gerente', 'guard_name' => 'Supervisor'],
-            ['name' => 'Cajero', 'guard_name' => 'Cajero'],
-            ['name' => 'Almacenista', 'guard_name' => 'Almacen'],
+            ['name' => 'Gerente', 'guard_name' => 'web'],
+            ['name' => 'Cajero', 'guard_name' => 'web'],
+            ['name' => 'Almacenista', 'guard_name' => 'web'],
         ];
 
         foreach ($areas as $areaName) {
-            $area = Area::create([
-                'name' => $areaName,
-            ]);
+            $area = Area::create(['name' => $areaName]);
 
-            // Asociar roles a esta área
             foreach ($roles as $roleData) {
-                $existingRole = Role::where('name', $roleData['name'])->where('guard_name', $roleData['guard_name'])->first();
+                $role = Role::firstOrCreate([
+                    'name' => $roleData['name'],
+                    'guard_name' => $roleData['guard_name']
+                ]);
 
-                if (!$existingRole) {
-                    $role = Role::create($roleData);
-                } else {
-                    $role = $existingRole;
+                // Verifica si el área ya tiene asignado el rol para evitar duplicaciones
+                if (!$area->roles->contains($role->id)) {
+                    $area->roles()->attach($role);
                 }
-
-                $area->roles()->attach($role);
             }
         }
     }

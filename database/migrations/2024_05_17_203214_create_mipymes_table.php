@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void{
         Schema::create('mipymes', function (Blueprint $table) {
             $table->id();
-            $table->string('name',50)->unique();
-            $table->string('email',50)->unique();
+            $table->string('name',50)->nullable()->unique();
+            $table->string('email',50)->nullable()->unique();
             $table->text('image')->nullable();
             $table->timestamps();
         });

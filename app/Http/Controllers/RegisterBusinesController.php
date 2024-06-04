@@ -48,13 +48,7 @@ class RegisterBusinesController extends Controller
                 'nullable', 'digits:10', Rule::unique('branches', 'phone')
             ],
             'state' => [
-                'required',
-                Rule::unique('branches')->where(function ($query) use ($request) {
-                    return $query->where('city', $request->city)
-                                ->where('district', $request->district)
-                                ->where('street', $request->street)
-                                ->where('number', $request->number);
-                }), 
+                'required', 
             ],
             'city' => [
                 'required',
@@ -87,7 +81,6 @@ class RegisterBusinesController extends Controller
             'phone.digits' => 'El número de teléfono debe tener exactamente 10 dígitos.',
             'phone.unique' => 'El numero ya existe.',
             'state.required' => 'El estado es obligatorio.',
-            'state.unique' => 'Una sucursal con esta dirección ya existe.',
             'city.required' => 'El municipio es obligatorio.',
             'district.required' => 'La colonia es obligatorio.',
             'street.required' => 'La calle es obligatoria.',
