@@ -1,3 +1,30 @@
+commit cd15c99187c1e2d0a42a9fd01ef95e67314df4ce
+Merge: 6b24295 41ff955
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Mon Jun 3 22:40:52 2024 -0600
+
+    Merge pull request #63 from davidrolito7/tendencias
+    
+    Tendencias endpoint
+
+commit 41ff9555ce3ccee82ad00646abcefe8eea1cafc9
+Author: David <dvirdr7@gmail.com>
+Date:   Mon Jun 3 22:19:54 2024 -0600
+
+    Tendencias endpoint
+
+commit 6b242951450fc42acc3f48b319fd2e83e63c222b
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Mon Jun 3 22:16:59 2024 -0600
+
+    Correcciones
+
+commit 6df6a62662f27909e230de9e7995c74e37a06409
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Mon Jun 3 21:18:09 2024 -0600
+
+    correcciones
+
 commit a4aaa463753a0023089b4d52b59b257e72408142
 Merge: 45930f8 2705f7c
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
