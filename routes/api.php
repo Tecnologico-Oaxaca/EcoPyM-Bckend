@@ -236,3 +236,5 @@ Route::put('/promotions/{id}',[PromotionController::class, 'update']);
 Route::patch('/promotions/{id}',[PromotionController::class, 'updatePartial']);
 Route::delete('/promotions/{id}',[PromotionController::class, 'destroy']);
 
+Route::get('/trends',[TrendController::class, 'index']);
+Route::get('/trends/comparar',[TrendController::class, 'compararConProductos']);
