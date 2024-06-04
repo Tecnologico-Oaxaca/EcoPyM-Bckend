@@ -1,3 +1,31 @@
+commit a4aaa463753a0023089b4d52b59b257e72408142
+Merge: 45930f8 2705f7c
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Wed May 29 13:35:18 2024 -0600
+
+    Merge pull request #62 from SoyFroylanMtz/rosa
+    
+    Tendencias
+
+commit 2705f7c0011e456b13570b91e5c4fa815c30bf27
+Merge: 273fe4d 45930f8
+Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
+Date:   Wed May 29 13:35:08 2024 -0600
+
+    Merge branch 'main' into rosa
+
+commit 273fe4db6c84caa875e3bd96d053b103a374c3ad
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Wed May 29 13:30:20 2024 -0600
+
+    Tendencias
+
+commit 45930f8ac2666d71aa0ad9164cdae5dee569754d
+Author: SoyFroylanMtz <soyfroylanmtzcarlos@gmail.com>
+Date:   Wed May 29 03:17:31 2024 -0600
+
+    Actualizando log commits
+
 commit 4524ad9420fe5ab2fad68efb3d4ffcf2bef428b2
 Merge: 0fbfb0a ad01798
 Author: SoyFroylanMtz <139150923+SoyFroylanMtz@users.noreply.github.com>
