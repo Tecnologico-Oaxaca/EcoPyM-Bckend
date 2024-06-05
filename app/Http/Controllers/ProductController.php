@@ -42,6 +42,37 @@ class ProductController extends Controller
             return response()->json($data, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+    public function isActive()
+{
+    try {
+        $products = Product::where('is_active', true)->with('brand')->get();
+
+        if ($products->isEmpty()) {
+            $data = [
+                'message' => 'Productos inexistentes',
+                'data' => null,
+                'status' => Response::HTTP_NOT_FOUND,
+            ];
+            return response()->json($data, Response::HTTP_NOT_FOUND);
+        }
+
+        $data = [
+            'message' => 'Productos encontrados',
+            'data' => $products,
+            'status' => Response::HTTP_OK,
+        ];
+        return response()->json($data, Response::HTTP_OK);
+
+    } catch (\Exception $e) {
+        $data = [
+            'message' => 'Error al obtener los productos',
+            'data' => null,
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
+        ];
+        return response()->json($data, Response::HTTP_INTERNAL_SERVER_ERROR);
+    }
+}
+
 
     public function searchName(Request $request){
         try {
