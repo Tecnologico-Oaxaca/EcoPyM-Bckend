@@ -186,6 +186,7 @@ Route::put('/sales/{id}',[SaleController::class, 'update']);
 Route::delete('/sales/{id}',[SaleController::class, 'destroy']);
 
 Route::get('/products',[ProductController::class, 'index']);
+Route::get('/productsIsActive',[ProductController::class, 'isActive']);
 Route::get('/products/{id}',[ProductController::class, 'show']);
 Route::post('/products',[ProductController::class, 'store']);
 Route::patch('/products/{id}',[ProductController::class, 'updatePartial']);
